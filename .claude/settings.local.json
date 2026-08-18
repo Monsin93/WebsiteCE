@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(unzip -o -j \"Materials.pptx\" \"ppt/media/*\" -d extracted_images)"
-    ]
-  }
-}
