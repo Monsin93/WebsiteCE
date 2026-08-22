@@ -13,15 +13,15 @@
     --navy: #0B1F3A;
     --navy-deep: #06131F;
     --navy-soft: #16305A;
-    --pink: #C2185B;
-    --pink-deep: #9A1148;
-    --pink-soft: #F7DCE7;
+    --accent: #0369A1;
+    --accent-deep: #075985;
+    --accent-soft: #DCEEF9;
     --paper: #F5F6F8;
     --white: #FFFFFF;
     --ink: #1C2430;
     --ink-muted: #5B6472;
     --line: #E2E5EA;
-    --bg-pastel: linear-gradient(135deg, #EAF4FF 0%, #FDE7F3 100%);
+    --bg-pastel: linear-gradient(135deg, #E6F2FB 0%, #E6F5EC 100%);
     --radius: 2px;
     --maxw: 1180px;
   }
@@ -52,13 +52,13 @@
     font-size:12px;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    color:var(--pink);
+    color:var(--accent);
     font-weight:500;
   }
   section{padding:96px 0; background:var(--bg-pastel);}
-  .section-head{max-width:680px; margin-bottom:56px;}
+  .section-head{margin-bottom:56px;}
   .section-head h2{font-size:clamp(28px,3.4vw,40px); margin-top:10px; line-height:1.2;}
-  .section-head p.th{color:var(--ink-muted); margin-top:14px; font-size:16px;}
+  .section-head p.sub{color:var(--ink-muted); margin-top:14px; font-size:16px;}
   .btn{
     display:inline-flex;
     align-items:center;
@@ -71,8 +71,10 @@
     border:1px solid transparent;
     transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
   }
-  .btn-primary{background:var(--pink); color:var(--white);}
-  .btn-primary:hover{background:var(--pink-deep); transform:translateY(-1px);}
+  .btn svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.2;
+           stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
+  .btn-primary{background:var(--accent); color:var(--white);}
+  .btn-primary:hover{background:var(--accent-deep); transform:translateY(-1px);}
   .btn-ghost{background:transparent; border-color:rgba(11,31,58,0.35); color:var(--navy);}
   .btn-ghost:hover{border-color:var(--navy); transform:translateY(-1px);}
 
@@ -115,10 +117,10 @@
   }
   nav.links a::after{
     content:""; position:absolute; left:0; bottom:0; height:1px; width:0;
-    background:var(--pink); transition:width .2s ease;
+    background:var(--accent); transition:width .2s ease;
   }
   nav.links a:hover::after{width:100%;}
-  nav.links a:hover{color:var(--pink);}
+  nav.links a:hover{color:var(--accent);}
 
   .nav-cta{display:none;}
   @media(min-width:900px){.nav-cta{display:inline-flex;}}
@@ -157,7 +159,7 @@
   }
   .hero-bg-overlay{
     position:absolute; inset:0; z-index:1;
-    background:linear-gradient(135deg, rgba(234,244,255,0.38) 0%, rgba(253,231,243,0.38) 100%);
+    background:linear-gradient(135deg, rgba(230,242,251,0.38) 0%, rgba(230,245,236,0.38) 100%);
     pointer-events:none;
   }
   @media(max-width:900px){.hero-bg-video{display:none;}}
@@ -165,10 +167,10 @@
     content:"";
     position:absolute; inset:0; z-index:2;
     background-image:
-      radial-gradient(1px 1px at 15% 25%, rgba(194,24,91,0.55) 50%, transparent 51%),
-      radial-gradient(1px 1px at 32% 65%, rgba(194,24,91,0.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 15% 25%, rgba(3,105,161,0.55) 50%, transparent 51%),
+      radial-gradient(1px 1px at 32% 65%, rgba(3,105,161,0.4) 50%, transparent 51%),
       radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.25) 50%, transparent 51%),
-      radial-gradient(1px 1px at 78% 55%, rgba(194,24,91,0.5) 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 55%, rgba(3,105,161,0.5) 50%, transparent 51%),
       radial-gradient(1.5px 1.5px at 88% 30%, rgba(255,255,255,0.2) 50%, transparent 51%),
       radial-gradient(1px 1px at 45% 80%, rgba(255,255,255,0.18) 50%, transparent 51%);
     background-size:100% 100%;
@@ -183,8 +185,8 @@
   .hero h1{
     color:var(--navy); font-size:clamp(32px,5vw,54px); line-height:1.12; margin-top:18px;
   }
-  .hero h1 .accent{color:var(--pink);}
-  .hero .th-line{
+  .hero h1 .accent{color:var(--accent);}
+  .hero .tagline{
     font-size:18px; color:rgba(11,31,58,0.8); margin-top:20px; font-weight:500;
   }
   .hero p.lede{
@@ -194,45 +196,49 @@
 
   /* ---------- ABOUT ---------- */
   .about{background:var(--bg-pastel);}
-  .about-grid{display:grid; grid-template-columns:1fr; gap:48px;}
-  @media(min-width:860px){.about-grid{grid-template-columns:0.9fr 1.1fr;}}
+  .about-grid{display:grid; grid-template-columns:1fr; gap:52px;}
   .stat-card{
     background:var(--navy); color:var(--white); padding:44px 36px; border-radius:var(--radius);
   }
-  .stat-num{font-family:'Noto Serif Thai',serif; font-size:64px; color:var(--pink); line-height:1;}
+  .stat-num{font-family:'Noto Serif Thai',serif; font-size:64px; color:var(--accent); line-height:1;}
   .stat-label{margin-top:10px; font-size:14px; color:rgba(255,255,255,0.75); letter-spacing:0.02em;}
   .stat-divider{height:1px; background:rgba(255,255,255,0.15); margin:26px 0;}
   .stat-sub{font-size:14px; color:rgba(255,255,255,0.85);}
-  .about-copy p{color:var(--ink-muted); margin:0 0 16px; font-size:16px;}
-  .about-copy p.th{font-size:15px; color:var(--ink-muted);}
+  .about-copy p{color:var(--ink-muted); margin:0 0 18px; font-size:16px;}
+  .about-copy p:last-child{margin-bottom:0;}
   .badge-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;}
   .badge{
     border:1px solid var(--line); background:var(--white); padding:8px 16px; font-size:13px;
     font-family:'IBM Plex Mono',monospace; letter-spacing:0.02em; color:var(--navy);
   }
 
+  /* ---------- HISTORY SLIDESHOW ---------- */
+  .history-slideshow{display:flex; flex-direction:column; gap:14px;}
+  .hs-frame{
+    position:relative; width:100%; aspect-ratio:2/1; overflow:hidden;
+    border:1px solid var(--line); background:var(--paper); border-radius:var(--radius);
+  }
+  .hs-slide{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center 30%; display:block;
+    opacity:0; transition:opacity .8s ease;
+  }
+  .hs-slide.is-active{opacity:1;}
+  .hs-dots{display:flex; gap:8px; align-items:center; justify-content:center;}
+  .hs-dot{
+    width:28px; height:3px; padding:0; border:none; cursor:pointer;
+    background:rgba(11,31,58,0.18);
+    transition:background .25s ease, transform .25s ease;
+  }
+  .hs-dot:hover{background:rgba(3,105,161,0.5);}
+  .hs-dot.is-active{background:var(--accent); transform:scaleY(1.6);}
+
   /* ---------- RESEARCH AREAS ---------- */
   .areas-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line);}
   .area-card{background:var(--white); padding:32px 28px; min-height:190px; display:flex; flex-direction:column; justify-content:space-between;}
-  .area-idx{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--pink);}
+  .area-idx{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--accent);}
   .area-card h3{font-size:18px; margin-top:22px; line-height:1.3;}
   .area-card p{font-size:13.5px; color:var(--ink-muted); margin-top:10px; text-align:justify;}
-
-  /* ---------- SERVICES (3) ---------- */
-  .services{background:var(--bg-pastel);}
-  .services .section-head h2{color:var(--navy);}
-  .services .section-head p.th{color:var(--ink-muted);}
-  .services .eyebrow{color:var(--pink);}
-  .service-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:28px;}
-  .service-card{
-    background:rgba(11,31,58,0.04); border:1px solid rgba(11,31,58,0.12);
-    padding:38px 32px; color:var(--navy);
-    transition:border-color .2s ease, background .2s ease;
-  }
-  .service-card:hover{border-color:var(--pink); background:rgba(11,31,58,0.07);}
-  .service-num{font-family:'Noto Serif Thai',serif; font-size:32px; color:var(--pink);}
-  .service-card h3{color:var(--navy); font-size:19px; margin-top:18px;}
-  .service-card p{font-size:14px; color:var(--ink-muted); margin-top:12px; text-align:justify;}
 
   /* ---------- PIPELINE (signature) ---------- */
   .pipeline{background:var(--bg-pastel);}
@@ -245,13 +251,6 @@
   .pipeline-caption div{font-size:13px; color:var(--ink-muted); text-align:center; padding:0 8px;}
   .pipeline-caption strong{display:block; color:var(--navy); font-family:'Noto Serif Thai',serif; font-size:15px; margin-bottom:4px;}
   @media(max-width:700px){.pipeline-caption{grid-template-columns:1fr;}}
-
-  /* ---------- WHY CHOOSE US ---------- */
-  .why{background:var(--bg-pastel);}
-  .why-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2px;}
-  .why-card{background:var(--white); padding:34px 30px; border-left:3px solid var(--pink);}
-  .why-card h3{font-size:17px;}
-  .why-card p{font-size:13.5px; color:var(--ink-muted); margin-top:10px;}
 
   /* ---------- TEAM ---------- */
   .team-grid{display:grid; grid-template-columns:1fr; gap:28px;}
@@ -267,33 +266,39 @@
   }
   .director-avatar img{width:100%; height:100%; object-fit:cover; display:block;}
   .director-card h3{font-size:19px;}
-  .director-card .role{font-size:13px; color:var(--pink); font-family:'IBM Plex Mono',monospace; margin-top:4px;}
+  .director-card .role{font-size:13px; color:var(--accent); font-family:'IBM Plex Mono',monospace; margin-top:4px;}
   .director-card p{font-size:14px; color:var(--ink-muted); margin-top:14px;}
   .advisory-card{border:1px dashed var(--line); padding:36px; display:flex; flex-direction:column; justify-content:center;}
   .advisory-card h4{font-size:15px; color:var(--navy); font-family:'IBM Plex Sans Thai',sans-serif; font-weight:600;}
   .advisory-card p{font-size:13.5px; color:var(--ink-muted); margin-top:8px;}
   .placeholder-tag{
     display:inline-block; margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:11px;
-    color:var(--pink); border:1px solid var(--pink-soft); background:var(--pink-soft); padding:3px 8px;
+    color:var(--accent); border:1px solid var(--accent-soft); background:var(--accent-soft); padding:3px 8px;
   }
 
   /* ---------- COLLABORATORS ---------- */
   .collab{background:var(--bg-pastel);}
   .collab .section-head h2{color:var(--navy);}
-  .collab .section-head p.th{color:var(--ink-muted);}
+  .collab .section-head p.sub{color:var(--ink-muted);}
   .chip-row{display:flex; flex-wrap:wrap; gap:12px;}
   .chip{
     border:1px solid rgba(11,31,58,0.2); color:var(--navy); padding:10px 20px; font-size:14px;
     font-family:'IBM Plex Sans Thai',sans-serif; border-radius:999px;
     display:flex; align-items:center; gap:8px;
   }
-  .chip .dot{width:6px; height:6px; border-radius:50%; background:var(--pink);}
+  .chip .dot{width:6px; height:6px; border-radius:50%; background:var(--accent);}
   .collab-map-img{width:100%; height:auto; display:block; border:1px solid rgba(255,255,255,0.15); border-radius:var(--radius); background:var(--white);}
   .collab-note{margin-top:26px; font-size:13.5px; color:var(--ink-muted);}
 
   /* ---------- CONTACT ---------- */
-  .contact-grid{display:grid; grid-template-columns:1fr; gap:40px; max-width:520px;}
-  .contact-block h3{font-size:15px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.05em; color:var(--pink); text-transform:uppercase; font-weight:500;}
+  .contact-grid{display:grid; grid-template-columns:1fr; gap:44px; max-width:900px;}
+  @media(min-width:760px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  .partner-link{display:flex; align-items:center; gap:16px; margin-top:16px;}
+  .partner-link img{height:64px; width:auto; transition:transform .25s ease;}
+  .partner-link:hover img{transform:scale(1.05);}
+  .partner-link span{font-family:'Noto Serif Thai',serif; font-size:19px; color:var(--navy);}
+  .contact-block .btn{margin-top:22px;}
+  .contact-block h3{font-size:15px; font-family:'IBM Plex Mono',monospace; letter-spacing:0.05em; color:var(--accent); text-transform:uppercase; font-weight:500;}
   .contact-block p{margin-top:12px; font-size:15.5px; color:var(--ink);}
   .contact-block p.muted{color:var(--ink-muted); font-size:14px;}
   .contact-map{
@@ -308,13 +313,24 @@
   @media(min-width:760px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr;}}
   footer h4{color:var(--white); font-family:'IBM Plex Sans Thai',sans-serif; font-size:14px; margin-bottom:14px; font-weight:600;}
   footer a{display:block; font-size:13.5px; padding:5px 0; color:rgba(255,255,255,0.6);}
-  footer a:hover{color:var(--pink);}
+  footer a:hover{color:var(--accent);}
   .footer-bottom{
     border-top:1px solid rgba(255,255,255,0.1); margin-top:40px; padding-top:24px;
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; color:rgba(255,255,255,0.4);
   }
 
-  :focus-visible{outline:2px solid var(--pink); outline-offset:2px;}
+  /* ---------- JUSTIFIED BODY COPY (headings stay ragged-right) ---------- */
+  .hero p.lede,
+  .about-copy p,
+  .collab-note{text-align:justify;}
+
+  /* ---------- FRAMED VISUALS: 90% width, centred ---------- */
+  .hs-frame,
+  .diagram-frame,
+  .pipeline-frame,
+  .collab-map-frame{max-width:90%; margin-left:auto; margin-right:auto;}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 
   /* ---------- SCROLL OFFSET (fixed header) ---------- */
   section[id]{scroll-margin-top:88px;}
@@ -329,10 +345,8 @@
   .reveal.is-visible{opacity:1; translate:0 0;}
 
   /* ---------- HOVER LIFT / MICRO-INTERACTIONS ---------- */
-  .why-card{transition:transform .25s ease, box-shadow .25s ease, border-left-color .25s ease;}
-  .why-card:hover{transform:translateY(-4px); box-shadow:0 10px 24px rgba(11,31,58,0.08); border-left-color:var(--pink-deep);}
   .badge{transition:transform .2s ease, border-color .2s ease;}
-  .badge:hover{transform:translateY(-2px); border-color:var(--pink);}
+  .badge:hover{transform:translateY(-2px); border-color:var(--accent);}
   .brand{transition:opacity .2s ease;}
   .brand:hover{opacity:0.82;}
 
@@ -362,10 +376,10 @@
   @keyframes ripple-anim{to{transform:scale(2.6); opacity:0;}}
 
   /* ---------- NAV ACTIVE STATE ---------- */
-  header.site-nav nav.links a.active{color:var(--pink);}
+  header.site-nav nav.links a.active{color:var(--accent);}
   header.site-nav nav.links a.active::after{width:100%;}
-  header.site-nav.scrolled nav.links a.active{color:var(--pink);}
-  .mobile-panel a.active{color:var(--pink);}
+  header.site-nav.scrolled nav.links a.active{color:var(--accent);}
+  .mobile-panel a.active{color:var(--accent);}
 
   /* ---------- HERO PARALLAX / FLOAT ---------- */
   .hero-molecule-float{
@@ -383,7 +397,7 @@
     *{transition-duration:0.001ms !important; animation-duration:0.001ms !important; animation-iteration-count:1 !important;}
     .reveal{opacity:1 !important; translate:0 0 !important;}
     .hero-molecule-float{animation:none !important;}
-    .hero-bg-video{display:none !important;}
+    .hero-bg-video, .ai-bg-video{display:none !important;}
   }
 
   /* ---------- DIAGRAM FRAME ---------- */
@@ -398,33 +412,24 @@
   }
 
   /* ---------- AI SOLUTIONS ---------- */
-  .ai-solutions{background:var(--bg-pastel); padding:96px 0;}
-  .ai-solutions .eyebrow{color:var(--pink);}
+  .ai-solutions{background:var(--bg-pastel); padding:96px 0; position:relative; overflow:hidden;}
+  .ai-bg-video{
+    position:absolute; inset:0; z-index:0;
+    width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    opacity:1; pointer-events:none;
+    filter:blur(1.5px) saturate(1.15) contrast(1.05);
+    transform:scale(1.04);
+  }
+  .ai-bg-overlay{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:linear-gradient(135deg, rgba(230,242,251,0.60) 0%, rgba(230,245,236,0.60) 100%);
+  }
+  .ai-solutions > .wrap{position:relative; z-index:2;}
+  @media(max-width:900px){.ai-bg-video{display:none;}}
+  .ai-solutions .eyebrow{color:var(--accent);}
   .ai-solutions .section-head h2{color:var(--navy);}
-  .ai-solutions .section-head p.th{color:var(--ink-muted);}
-  .ai-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--pink-soft); border:1px solid rgba(194,24,91,0.25);
-    color:var(--pink-deep); padding:8px 18px;
-    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em;
-    text-transform:uppercase; margin-bottom:40px;
-    border-radius:999px;
-  }
-  .ai-badge::before{
-    content:""; display:block; width:7px; height:7px;
-    border-radius:50%; background:var(--pink);
-    animation:pulse-dot 1.8s ease-in-out infinite;
-  }
-  @keyframes pulse-dot{
-    0%,100%{opacity:1; transform:scale(1);}
-    50%{opacity:0.4; transform:scale(0.7);}
-  }
-  .ai-lead{
-    font-size:clamp(22px,2.8vw,32px); color:var(--navy);
-    font-family:'Noto Serif Thai',serif; line-height:1.25; margin-bottom:14px;
-  }
-  .ai-lead span{color:var(--pink);}
-  .ai-sub{font-size:15.5px; color:var(--ink-muted); max-width:680px; margin-bottom:60px;}
+  .ai-solutions .section-head p.sub{color:var(--ink-muted);}
   .ai-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:24px;}
   .ai-card{
     background:var(--white);
@@ -436,8 +441,8 @@
   }
   .ai-card:hover{
     transform:translateY(-4px);
-    border-color:var(--pink);
-    box-shadow:0 8px 28px rgba(194,24,91,0.12);
+    border-color:var(--accent);
+    box-shadow:0 8px 28px rgba(3,105,161,0.12);
   }
   .ai-card-thumb{
     width:100%; aspect-ratio:16/9; overflow:hidden;
@@ -457,7 +462,7 @@
     padding:4px 10px; backdrop-filter:blur(4px);
   }
   .ai-card-tag.live{
-    background:rgba(194,24,91,0.85); color:var(--white);
+    background:rgba(3,105,161,0.85); color:var(--white);
   }
   .ai-card-body{
     padding:28px 28px 24px;
@@ -465,7 +470,7 @@
   }
   .ai-card-label{
     font-family:'IBM Plex Mono',monospace; font-size:11px;
-    color:var(--pink); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;
+    color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:10px;
   }
   .ai-card-body h3{
     color:var(--navy); font-size:19px; margin-bottom:12px; line-height:1.3;
@@ -480,17 +485,17 @@
   }
   .ai-card-bullets li::before{
     content:""; position:absolute; left:0; top:8px;
-    width:5px; height:5px; border-radius:50%; background:var(--pink);
+    width:5px; height:5px; border-radius:50%; background:var(--accent);
   }
   .ai-card-link{
     display:inline-flex; align-items:center; gap:8px;
     color:var(--white); font-size:14px; font-weight:600;
-    border:1px solid var(--pink);
+    border:1px solid var(--accent);
     padding:10px 24px;
-    background:var(--pink);
+    background:var(--accent);
     transition:background .18s ease, border-color .18s ease, transform .18s ease;
   }
-  .ai-card-link:hover{background:var(--pink-deep); border-color:var(--pink-deep); transform:translateY(-1px);}
+  .ai-card-link:hover{background:var(--accent-deep); border-color:var(--accent-deep); transform:translateY(-1px);}
   .ai-card-link svg{width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0;}
 </style>
 </head>
@@ -505,7 +510,6 @@
     <nav class="links">
       <a href="#about">About</a>
       <a href="#research">Research</a>
-      <a href="#services">Services</a>
       <a href="#pipeline">Pipeline</a>
       <a href="#team">Team</a>
       <a href="#collaborators">Collaborators</a>
@@ -523,7 +527,6 @@
   <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
   <a href="#about">About</a>
   <a href="#research">Research</a>
-  <a href="#services">Services</a>
   <a href="#pipeline">Pipeline</a>
   <a href="#team">Team</a>
   <a href="#collaborators">Collaborators</a>
@@ -538,26 +541,26 @@
   <div class="hero-bg-overlay" aria-hidden="true"></div>
   <div class="hero-molecule-float" aria-hidden="true">
     <svg class="hero-molecule" id="heroMolecule" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="200" cy="80" r="6" fill="#C2185B"/>
+      <circle cx="200" cy="80" r="6" fill="#0369A1"/>
       <circle cx="120" cy="160" r="5" fill="#FFFFFF" fill-opacity="0.5"/>
-      <circle cx="280" cy="150" r="5" fill="#C2185B"/>
+      <circle cx="280" cy="150" r="5" fill="#0369A1"/>
       <circle cx="90" cy="260" r="4" fill="#FFFFFF" fill-opacity="0.4"/>
       <circle cx="220" cy="260" r="6" fill="#FFFFFF" fill-opacity="0.6"/>
-      <circle cx="320" cy="270" r="4" fill="#C2185B"/>
+      <circle cx="320" cy="270" r="4" fill="#0369A1"/>
       <circle cx="170" cy="340" r="5" fill="#FFFFFF" fill-opacity="0.4"/>
-      <line x1="200" y1="80" x2="120" y2="160" stroke="#C2185B" stroke-opacity="0.4"/>
+      <line x1="200" y1="80" x2="120" y2="160" stroke="#0369A1" stroke-opacity="0.4"/>
       <line x1="200" y1="80" x2="280" y2="150" stroke="#FFFFFF" stroke-opacity="0.25"/>
       <line x1="120" y1="160" x2="90" y2="260" stroke="#FFFFFF" stroke-opacity="0.25"/>
-      <line x1="120" y1="160" x2="220" y2="260" stroke="#C2185B" stroke-opacity="0.35"/>
+      <line x1="120" y1="160" x2="220" y2="260" stroke="#0369A1" stroke-opacity="0.35"/>
       <line x1="280" y1="150" x2="220" y2="260" stroke="#FFFFFF" stroke-opacity="0.25"/>
-      <line x1="280" y1="150" x2="320" y2="270" stroke="#C2185B" stroke-opacity="0.35"/>
+      <line x1="280" y1="150" x2="320" y2="270" stroke="#0369A1" stroke-opacity="0.35"/>
       <line x1="220" y1="260" x2="170" y2="340" stroke="#FFFFFF" stroke-opacity="0.25"/>
     </svg>
   </div>
   <div class="wrap hero-inner" data-stagger>
     <div class="eyebrow">Chulalongkorn University &middot; Faculty of Pharmaceutical Sciences</div>
     <h1>Center of Excellence in Natural Products for <span class="accent">Ageing &amp; Chronic Diseases</span></h1>
-    <div class="th-line">ศูนย์ความเป็นเลิศทางการวิจัยและพัฒนาสารสกัดจากธรรมชาติ เพื่อโรคอุบัติใหม่ โรคเรื้อรัง และสังคมผู้สูงอายุ</div>
+    <div class="tagline">Research and development of natural-product extracts for emerging diseases, chronic conditions, and an ageing society</div>
     <p class="lede">Leveraging AI-driven drug discovery and nanoformulation, we transform natural-product science into pharmaceutical innovation and precision medicine for an ageing world.</p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">Contact Us</a>
@@ -570,23 +573,26 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">About &amp; History</div>
-      <h2>A legacy of pharmaceutical leadership in Thailand</h2>
-      <p class="th">ประวัติและความน่าเชื่อถือของคณะเภสัชศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
+      <h2>From natural compound to clinical formulation</h2>
+      <p class="sub">The establishment of CE-NPACD and the evolution of its research programme</p>
     </div>
     <div class="about-grid" data-stagger>
-      <div class="stat-card">
-        <div class="stat-num">113</div>
-        <div class="stat-label">Years of academic leadership<br>ปีแห่งความเป็นเลิศทางวิชาการ</div>
-        <div class="stat-divider"></div>
-        <div class="stat-sub">Thailand's first Faculty of Pharmaceutical Sciences — the foundation CE-NPACD builds upon.</div>
+      <div class="history-slideshow">
+        <div class="hs-frame">
+          <img class="hs-slide is-active" src="assets/His1.png" alt="Entrance to the Center of Excellence in Natural Products for Ageing and Chronic Diseases and the Joint Research Laboratory for China-Thailand Natural Medicinal Chemistry">
+          <img class="hs-slide" src="assets/His2.png" alt="Second-floor entrance to the Center at the Faculty of Pharmaceutical Sciences, Chulalongkorn University">
+          <img class="hs-slide" src="assets/His3.png" alt="Laboratory bench and fume hoods inside the Center">
+        </div>
+        <div class="hs-dots" role="tablist" aria-label="Center facility photographs">
+          <button class="hs-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Photograph 1"></button>
+          <button class="hs-dot" type="button" role="tab" aria-selected="false" aria-label="Photograph 2"></button>
+          <button class="hs-dot" type="button" role="tab" aria-selected="false" aria-label="Photograph 3"></button>
+        </div>
       </div>
       <div class="about-copy">
-        <p>The Faculty of Pharmaceutical Sciences, Chulalongkorn University, is Thailand's first school of pharmacy, now marking 113 years of academic leadership. The Center of Excellence in Natural Products for Ageing and Chronic Diseases (CE-NPACD) was established within this faculty to apply rigorous natural-product research to the pressing challenges of emerging diseases, chronic conditions, and an ageing society.</p>
-        <p class="th">คณะเภสัชศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย เป็นโรงเรียนเภสัชศาสตร์แห่งแรกของประเทศไทย ครบรอบ 113 ปีแห่งความเป็นเลิศทางวิชาการ ศูนย์ CE-NPACD ก่อตั้งขึ้นภายใต้คณะฯ เพื่อนำงานวิจัยด้านสารสกัดจากธรรมชาติมาต่อยอดสู่การแก้ปัญหาโรคอุบัติใหม่ โรคเรื้อรัง และการก้าวเข้าสู่สังคมผู้สูงอายุ</p>
-        <div class="badge-row">
-          <span class="badge">FIRST PHARMACY SCHOOL · THAILAND</span>
-          <span class="badge">EST. LEGACY · 113 YEARS</span>
-        </div>
+        <p>The Center of Excellence in Natural Products for Ageing and Chronic Diseases (CE-NPACD) was established at Chulalongkorn University to advance natural-product research across the full translational pathway, from the isolation of bioactive compounds to the development of formulations with potential for clinical application.</p>
+        <p>The Center’s research initially focused on classical natural-product chemistry. This was followed by the development of advanced drug-delivery systems, including polymeric, self-assembling, and magnetic nanoparticles.</p>
+        <p>The current phase integrates artificial intelligence with experimental research, combining virtual screening, deep-learning-based molecular docking, and machine-learning-guided formulation optimization with laboratory studies within a unified research platform.</p>
       </div>
     </div>
   </div>
@@ -597,37 +603,10 @@
     <div class="section-head">
       <div class="eyebrow">Core Expertise</div>
       <h2>Four integrated research pillars</h2>
-      <p class="th">โครงสร้างงานวิจัย 4 ด้านหลักของศูนย์ความเป็นเลิศ ครอบคลุมตั้งแต่เคมีสารธรรมชาติ การนำส่ง เภสัชวิทยา ถึง AI Platform</p>
+      <p class="sub">Four core research areas spanning natural product chemistry, delivery, pharmacology, and the AI platform</p>
     </div>
     <div class="diagram-frame">
       <img src="assets/research-diagram.png" alt="CE-NPACD research structure: Chemistry &amp; Biopharmaceutics, Nanoformulation, Pharmacology, and AI Platform">
-    </div>
-  </div>
-</section>
-
-<section class="services" id="services">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Products &amp; Services</div>
-      <h2>How we work with researchers and partners</h2>
-      <p class="th">รูปแบบการวิจัยและความร่วมมือของศูนย์ฯ</p>
-    </div>
-    <div class="service-grid" data-stagger>
-      <div class="service-card">
-        <div class="service-num">01</div>
-        <h3>Natural Product Discovery</h3>
-        <p>Natural product chemistry, physicochemical characterization, and chemistry &amp; biopharmaceutics research to identify and validate bioactive candidates.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">02</div>
-        <h3>Nanoformulation &amp; Delivery</h3>
-        <p>Nanotechnology-based formulation development to improve stability, bioavailability, and delivery of natural-product actives.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-num">03</div>
-        <h3>AI-Driven Drug Discovery</h3>
-        <p>AI platform-supported drug discovery and product development, accelerating research toward precision-medicine applications.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -637,7 +616,7 @@
     <div class="section-head">
       <div class="eyebrow">Innovation Pipeline</div>
       <h2>From natural product to AI-driven formulation</h2>
-      <p class="th">แผนภาพความเชื่อมโยงจากการค้นพบสารสกัดธรรมชาติสู่ระบบนำส่งและการค้นคว้ายาด้วย AI</p>
+      <p class="sub">How natural-product discovery connects to delivery systems and AI-driven drug discovery</p>
     </div>
     <div class="pipeline-frame">
       <img class="pipeline-svg" src="assets/pipeline.png" alt="Innovation pipeline: from traditional natural product discovery to delivery systems and AI-driven drug discovery">
@@ -650,40 +629,12 @@
   </div>
 </section>
 
-<section class="why" id="why">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Why Choose Us</div>
-      <h2>What sets CE-NPACD apart</h2>
-      <p class="th">เหตุผลที่ควรเลือกความร่วมมือกับศูนย์ความเป็นเลิศฯ</p>
-    </div>
-    <div class="why-grid" data-stagger>
-      <div class="why-card">
-        <h3>Established Legacy</h3>
-        <p>Built on Thailand's first Faculty of Pharmaceutical Sciences, with 113 years of academic credibility.</p>
-      </div>
-      <div class="why-card">
-        <h3>Integrated Technology</h3>
-        <p>Nanotechnology and an AI platform are combined directly with natural-product research, not treated as separate tracks.</p>
-      </div>
-      <div class="why-card">
-        <h3>Global Network</h3>
-        <p>An international collaborator network spanning multiple countries supports joint research and exchange.</p>
-      </div>
-      <div class="why-card">
-        <h3>Real-World Focus</h3>
-        <p>Research is directed at emerging diseases, chronic conditions, and the needs of an ageing society.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="team">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Our Team</div>
       <h2>Director, advisory &amp; research members</h2>
-      <p class="th">ผู้อำนวยการศูนย์ฯ คณะกรรมการที่ปรึกษา และทีมนักวิจัยของ CE-NPACD</p>
+      <p class="sub">The Director, advisory members, and research team of CE-NPACD</p>
     </div>
     <div class="diagram-frame">
       <img src="assets/team-orgchart.png" alt="CE-NPACD team: Prof. Pornchai Rojsitthisak (Director), Advisory Members, and Research Team members">
@@ -696,41 +647,25 @@
     <div class="section-head">
       <div class="eyebrow">International Collaborators</div>
       <h2>A research network across borders</h2>
-      <p class="th">รายชื่อประเทศพันธมิตรที่ร่วมมือทางวิชาการกับศูนย์ฯ</p>
+      <p class="sub">Countries with active academic collaboration with the Center</p>
     </div>
     <div class="collab-map-frame">
       <img class="collab-map-img" src="assets/international-collaborators.png" alt="Map of international collaborating institutions across China, Philippines, USA, UK, Japan, Germany, Qatar, Sri Lanka, Singapore, and Malaysia">
     </div>
-    <p class="collab-note">Specific partner institution names are not listed here — brief provided country-level collaboration only.<br>ชื่อสถาบันพันธมิตรที่เจาะจงยังไม่ได้ระบุ เนื่องจากข้อมูลที่ให้มาระบุเพียงระดับประเทศ</p>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Contact Us</div>
-      <h2>Get in touch with CE-NPACD</h2>
-      <p class="th">สถานที่ตั้งและช่องทางการติดต่อศูนย์ความเป็นเลิศฯ</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-block">
-        <h3>Location</h3>
-        <p>Faculty of Pharmaceutical Sciences<br>Chulalongkorn University, Pathumwan, Bangkok</p>
-        <p class="th">คณะเภสัชศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย เขตปทุมวัน กรุงเทพมหานคร</p>
-      </div>
-    </div>
+    <p class="collab-note">Collaboration is shown at country level; individual partner institutions are not listed on this page.</p>
   </div>
 </section>
 
 <section class="ai-solutions" id="ai-solutions">
+  <video class="ai-bg-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="assets/Formulation.mp4" type="video/mp4">
+  </video>
+  <div class="ai-bg-overlay" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="ai-badge">In Collaboration with CE-NPACD</div>
-    <div class="ai-lead">Real platforms, <span>real research</span>, real impact.</div>
-    <div class="ai-sub">Live applications built from our integrated AI workflow, developed in collaboration with CE-NPACD and the Faculty of Pharmaceutical Sciences, Chulalongkorn University.</div>
     <div class="section-head">
       <div class="eyebrow">AI Solutions &amp; Use Cases</div>
       <h2>Artificial Intelligence Product Track</h2>
-      <p class="th">แพลตฟอร์มและผลงานที่พัฒนาจาก AI Pipeline ของศูนย์ฯ</p>
+      <p class="sub">Platforms and outputs built on the Center’s AI pipeline</p>
     </div>
     <div class="ai-cards" data-stagger>
 
@@ -801,6 +736,33 @@
   </div>
 </section>
 
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Contact Us</div>
+      <h2>Get in touch with CE-NPACD</h2>
+      <p class="sub">Location and contact channels for the Center</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-block">
+        <h3>Location</h3>
+        <p>Faculty of Pharmaceutical Sciences<br>Chulalongkorn University, Pathumwan, Bangkok</p>
+      </div>
+      <div class="contact-block">
+        <h3>AI Platform Partner</h3>
+        <a class="partner-link" href="https://ailongevity-tech.com/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/logo-mark.png" alt="AI Longevity">
+          <span>AI Longevity</span>
+        </a>
+        <a class="btn btn-primary" href="https://ailongevity-tech.com/" target="_blank" rel="noopener noreferrer">
+          Visit AI Longevity
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -812,7 +774,6 @@
         <h4>Navigate</h4>
         <a href="#about">About</a>
         <a href="#research">Research</a>
-        <a href="#services">Services</a>
         <a href="#pipeline">Pipeline</a>
       </div>
       <div>
@@ -860,7 +821,7 @@
   /* ---- Tag standalone sections/blocks with .reveal ---- */
   var soloSelectors = [
     '.section-head', '.diagram-frame', '.pipeline-frame',
-    '.contact-block', '.ai-badge', '.ai-lead', '.ai-sub',
+    '.contact-block',
     '.collab-map-frame', '.collab-note'
   ];
   document.querySelectorAll(soloSelectors.join(',')).forEach(function(el){
@@ -892,6 +853,43 @@
     setTimeout(function(){
       document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el){ el.classList.add('is-visible'); });
     }, 4000);
+  }
+
+  /* ---- History slideshow (About section) ---- */
+  var hs = document.querySelector('.history-slideshow');
+  if(hs){
+    var hsSlides = hs.querySelectorAll('.hs-slide');
+    var hsDots = hs.querySelectorAll('.hs-dot');
+    var hsCur = 0, hsTimer = null;
+
+    function hsShow(i){
+      hsCur = (i + hsSlides.length) % hsSlides.length;
+      Array.prototype.forEach.call(hsSlides, function(el, n){
+        el.classList.toggle('is-active', n === hsCur);
+      });
+      Array.prototype.forEach.call(hsDots, function(el, n){
+        el.classList.toggle('is-active', n === hsCur);
+        el.setAttribute('aria-selected', n === hsCur ? 'true' : 'false');
+      });
+    }
+    function hsStop(){ if(hsTimer){ clearInterval(hsTimer); hsTimer = null; } }
+    function hsStart(){
+      if(reduceMotion || hsSlides.length < 2) return;
+      hsStop();
+      hsTimer = setInterval(function(){ hsShow(hsCur + 1); }, 5000);
+    }
+
+    Array.prototype.forEach.call(hsDots, function(dot, n){
+      dot.addEventListener('click', function(){ hsShow(n); hsStart(); });
+    });
+    hs.addEventListener('mouseenter', hsStop);
+    hs.addEventListener('mouseleave', hsStart);
+    document.addEventListener('visibilitychange', function(){
+      if(document.hidden){ hsStop(); } else { hsStart(); }
+    });
+
+    hsShow(0);
+    hsStart();
   }
 
   /* ---- Scrollspy: highlight the nav link for the section in view ---- */
@@ -956,16 +954,15 @@
     });
   }
 
-  /* ---- Hero background video: respect reduced motion / small screens ---- */
-  var heroVideo = document.querySelector('.hero-bg-video');
-  if(heroVideo){
+  /* ---- Background videos: respect reduced motion / small screens ---- */
+  document.querySelectorAll('.hero-bg-video, .ai-bg-video').forEach(function(vid){
     if(reduceMotion || !window.matchMedia('(min-width:900px)').matches){
-      heroVideo.pause();
-      heroVideo.removeAttribute('autoplay');
+      vid.pause();
+      vid.removeAttribute('autoplay');
     } else {
-      heroVideo.play().catch(function(){});
+      vid.play().catch(function(){});
     }
-  }
+  });
 })();
 </script>
 
