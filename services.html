@@ -1,0 +1,472 @@
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>CE-NPACD Research Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: lab-instrument catalogue. Compact masthead, pipeline strip, sticky discipline rail + price ledger rows; quote view is form + live summary. */
+:root{
+  --bg:#F3F6F5; --surface:#FFFFFF; --ink:#0F1E1C; --muted:#566764; --line:#D6DFDC;
+  --accent:#0B6B5F; --accent-ink:#FFFFFF; --accent-soft:#DFEFEA; --ochre:#8E6110; --ochre-soft:#F5ECD9;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1312; --surface:#111C1A; --ink:#E4EDEB; --muted:#93A6A2; --line:#22322F;
+  --accent:#55C6B1; --accent-ink:#04201B; --accent-soft:#12322D; --ochre:#E2B65C; --ochre-soft:#2E2512; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1312; --surface:#111C1A; --ink:#E4EDEB; --muted:#93A6A2; --line:#22322F;
+  --accent:#55C6B1; --accent-ink:#04201B; --accent-soft:#12322D; --ochre:#E2B65C; --ochre-soft:#2E2512; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
+.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink);min-width:0}
+.brand b{font-family:var(--display);font-size:19px;letter-spacing:.01em}
+.brand span{color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.nav a{text-decoration:none;color:var(--muted);padding:8px 10px;border-radius:8px;font-size:14px}
+.nav a:hover{color:var(--ink)}
+.nav a.on{color:var(--ink);font-weight:600}
+.qbtn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--accent-ink)!important;font-weight:600}
+.qbtn .n{font-family:var(--mono);font-size:12px;background:var(--accent-ink);color:var(--accent);border-radius:20px;padding:0 7px;min-width:20px;text-align:center}
+@media (max-width:760px){.nav a.hide-s{display:none}.brand span{display:none}}
+
+/* hero */
+.hero{padding-block:44px 28px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font-size:clamp(30px,4.6vw,52px);font-weight:700;max-width:18ch;margin-top:10px;letter-spacing:-.01em}
+.hero p.lede{max-width:64ch;color:var(--muted);font-size:17px;margin:14px 0 0}
+.facts{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:20px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:500}
+
+/* pipeline strip */
+.pipe{margin-top:30px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.stage{padding:14px 16px;border-left:1px solid var(--line);position:relative;min-width:0}
+.stage:first-child{border-left:0}
+.stage .k{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.stage h3{font-size:17px;margin-top:4px}
+.stage p{margin:4px 0 0;font-size:13px;color:var(--muted)}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;background:var(--surface);border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:1}
+@media (max-width:860px){.pipe{grid-template-columns:1fr 1fr}.stage{border-left:0;border-top:1px solid var(--line)}.stage:nth-child(-n+2){border-top:0}.stage:nth-child(even){border-left:1px solid var(--line)}.stage::after{display:none}}
+
+/* catalogue */
+.cat-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:32px;padding-block:24px 64px}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;display:flex;flex-direction:column;gap:2px}
+.rail button{all:unset;cursor:pointer;padding:9px 12px;border-radius:8px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;font-size:14px}
+.rail button:hover{color:var(--ink);background:var(--accent-soft)}
+.rail button[aria-pressed="true"]{color:var(--ink);font-weight:600;background:var(--accent-soft)}
+.rail button:focus-visible{outline:2px solid var(--accent)}
+.rail .c{font-family:var(--mono);font-size:12px}
+.rail .hint{margin-top:16px;font-size:13px;color:var(--muted);padding:0 12px}
+.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.search{flex:1;min-width:220px;position:relative}
+.search input{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted)}
+.chips{display:none;gap:6px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:var(--surface);padding:6px 12px;border-radius:20px;font-size:13px;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+@media (max-width:900px){.cat-layout{grid-template-columns:minmax(0,1fr)}.rail{display:none}.chips{display:flex}}
+
+.discipline{margin-top:36px}
+.discipline:first-of-type{margin-top:16px}
+.dhead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.dhead h2{font-size:26px}
+.dhead p{flex-basis:100%;margin:4px 0 0;color:var(--muted);max-width:70ch}
+.group{margin-top:22px}
+.ghead{display:flex;gap:10px;align-items:baseline;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-bottom:6px}
+.ghead .gn{color:var(--ink);font-weight:500}
+.ghead .pk{color:var(--ochre)}
+.gnote{font-size:13px;color:var(--muted);margin:0 0 6px}
+
+.row{display:grid;grid-template-columns:64px minmax(0,1fr) 130px 150px 96px;gap:16px;align-items:start;padding:14px 0;border-top:1px solid var(--line)}
+.row .code{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:2px}
+.row h3{font-family:var(--body);font-weight:600;font-size:16px;line-height:1.35}
+.row .d{margin:4px 0 0;color:var(--muted);font-size:14px}
+.row .o{margin:6px 0 0;font-size:13px}
+.row .o span{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-right:6px}
+.row .x{margin:4px 0 0;font-size:13px;color:var(--ochre)}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:4px;background:var(--ochre-soft);color:var(--ochre);margin-left:8px;vertical-align:2px;white-space:nowrap}
+.tat{font-size:13px;color:var(--muted)}
+.tat b{display:block;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:400}
+.price{text-align:right;font-variant-numeric:tabular-nums}
+.price .v{font-family:var(--mono);font-size:17px;font-weight:500;white-space:nowrap}
+.price .v small{font-size:12px;color:var(--muted);font-weight:400;margin-right:4px}
+.price .u{font-size:12px;color:var(--muted)}
+.price .q{font-family:var(--mono);font-size:14px;color:var(--ochre)}
+.add{justify-self:end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
+.add:hover{background:var(--accent-soft)}
+.add[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.row.pkgrow{background:linear-gradient(90deg,var(--ochre-soft),transparent 70%);padding-left:10px;margin-left:-10px;border-radius:0}
+@media (max-width:760px){
+  .row{grid-template-columns:minmax(0,1fr) auto;gap:6px 14px}
+  .row .code{grid-column:1/-1;padding:0}
+  .row .main{grid-column:1/-1}
+  .row .tat{grid-column:1/2;align-self:center}
+  .row .price{grid-column:2/3;grid-row:auto}
+  .row .add{grid-column:1/-1;justify-self:stretch;padding:10px}
+  .tat b{display:inline;margin-right:6px}
+}
+.empty{padding:40px 0;color:var(--muted)}
+.serve{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:14px}
+.serve .sl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.serve #serve{display:flex;flex-wrap:wrap;gap:6px}
+.serve #serve span{font-size:13px;border:1px solid var(--line);border-radius:20px;padding:3px 10px;background:var(--surface)}
+
+/* process + terms */
+.band{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band .wrap{padding-block:48px}
+.band h2{font-size:28px}
+.steps{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:s}
+.steps li{counter-increment:s;min-width:0;border-top:2px solid var(--accent);padding-top:12px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent)}
+.steps h3{font-family:var(--body);font-size:15px;font-weight:600;margin-top:4px}
+.steps p{margin:4px 0 0;font-size:14px;color:var(--muted)}
+@media (max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-block:44px}
+.terms h3{font-family:var(--body);font-size:15px;font-weight:600}
+.terms p{margin:6px 0 0;color:var(--muted);font-size:14px}
+@media (max-width:760px){.terms{grid-template-columns:1fr}}
+
+/* quote view */
+.qhead{padding-block:36px 8px}
+.qhead h1{font-size:clamp(28px,4vw,40px)}
+.qhead p{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.qgrid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;padding-block:20px 64px;align-items:start}
+@media (max-width:900px){.qgrid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.panel h2{font-size:20px;margin-bottom:14px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:600}
+.field label i{font-style:normal;color:var(--muted);font-weight:400}
+.field input,.field select,.field textarea{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);width:100%}
+.field textarea{min-height:120px;resize:vertical}
+.field .err{font-size:12px;color:#B3261E;display:none}
+:root[data-theme="dark"] .field .err{color:#F2B8B5}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .field .err{color:#F2B8B5}}
+.field.bad input,.field.bad textarea,.field.bad select{border-color:#B3261E}
+.field.bad .err{display:block}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.field .check input{width:auto;margin-top:4px;padding:0;accent-color:var(--accent);flex:none}
+.field .check{font-weight:400}
+.primary{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:12px 18px;font-weight:600;cursor:pointer}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer}
+.sum{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px)}
+.line{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 0;border-top:1px solid var(--line)}
+.line:first-of-type{border-top:0}
+.line .t{font-weight:600;font-size:14px}
+.line .t span{font-family:var(--mono);font-weight:400;color:var(--muted);font-size:12px;margin-right:6px}
+.line .meta{grid-column:1/2;display:flex;gap:10px;align-items:center;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.line .amt{grid-row:1/3;grid-column:2/3;align-self:center;text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px}
+.qty button{border:0;background:transparent;width:26px;height:26px;cursor:pointer}
+.qty input{width:44px;text-align:center;border:0;background:transparent;font-family:var(--mono);font-size:13px;-moz-appearance:textfield}
+.qty input::-webkit-inner-spin-button{-webkit-appearance:none}
+.rm{border:0;background:transparent;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:12px;padding:0}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--ink);margin-top:6px;padding-top:12px}
+.total .v{font-family:var(--mono);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.small{font-size:12px;color:var(--muted);margin:8px 0 0}
+.done{border-color:var(--accent)}
+.done pre{white-space:pre-wrap;word-break:break-word;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:14px;font-family:var(--mono);font-size:12px;max-height:340px;overflow:auto}
+.copyline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.copyline code{font-family:var(--mono);background:var(--accent-soft);padding:6px 10px;border-radius:6px;user-select:all;word-break:break-all}
+
+/* phone quote bar */
+.qbar{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--ink);color:var(--bg);padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:none;align-items:center;justify-content:space-between;gap:12px}
+.qbar a{color:var(--bg);font-weight:600}
+@media (max-width:760px){body.has-cart.view-services .qbar{display:flex}body.has-cart.view-services{padding-bottom:64px}}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:16px 40px;font-size:13px;color:var(--muted)}
+footer b{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.add,.rail button{transition:background .15s,color .15s}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#services"><b>CE-NPACD</b><span>Research Services · Chulalongkorn University</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/" class="hide-s">&larr; CE-NPACD Home</a>
+      <a href="#services" id="nav-services" class="hide-s">Services</a>
+      <a href="#process-anchor" class="hide-s" data-scroll="process">How it works</a>
+      <a href="#quote" id="nav-quote" class="qbtn">Request a quote <span class="n" id="cart-n">0</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="view-services">
+  <section class="wrap hero">
+    <div class="eyebrow">Center of Excellence · Bangkok, Thailand</div>
+    <h1>Drug discovery and formulation services, from molecule to product</h1>
+    <p class="lede">AI-driven computational chemistry, nanoformulation and wet-lab testing from the Center of Excellence in Natural Products for Ageing and Chronic Diseases, Faculty of Pharmaceutical Sciences, Chulalongkorn University. Choose individual services or a package, add them to your request and receive a formal quotation.</p>
+    <div class="facts" id="facts"></div>
+    <div class="serve"><span class="sl">Serving</span><div id="serve"></div></div>
+    <div class="pipe" role="list" aria-label="Where our services fit in development">
+      <div class="stage" role="listitem"><div class="k">Stage 1</div><h3>Target</h3><p>Network pharmacology, structure preparation, data curation</p></div>
+      <div class="stage" role="listitem"><div class="k">Stage 2</div><h3>Hit</h3><p>Docking, virtual screening, ML screening</p></div>
+      <div class="stage" role="listitem"><div class="k">Stage 3</div><h3>Lead</h3><p>MD, free energy, QSAR, generative design, ADMET</p></div>
+      <div class="stage" role="listitem"><div class="k">Stage 4</div><h3>Formulation</h3><p>AI-guided optimisation, nanocarriers, prototypes</p></div>
+      <div class="stage" role="listitem"><div class="k">Stage 5</div><h3>Validation</h3><p>Characterisation, analysis, bioassays, permeation</p></div>
+    </div>
+  </section>
+
+  <section class="wrap cat-layout" aria-label="Service catalogue">
+    <aside class="rail" id="rail" aria-label="Disciplines"></aside>
+    <div style="min-width:0">
+      <div class="tools">
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="q" type="search" placeholder="Search services, e.g. docking, liposome, HPLC" aria-label="Search services">
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Filter by discipline"></div>
+      </div>
+      <div id="catalogue"></div>
+    </div>
+  </section>
+
+  <section class="band" id="process">
+    <div class="wrap">
+      <div class="eyebrow">How it works</div>
+      <h2>From first call to final report</h2>
+      <ol class="steps">
+        <li><h3>Scoping call</h3><p>A free 30-minute call to define objectives, samples and deliverables.</p></li>
+        <li><h3>Quotation</h3><p>A formal quotation with scope, timeline and price.</p></li>
+        <li><h3>Agreement & NDA</h3><p>Service agreement and confidentiality terms signed before any data or samples move.</p></li>
+        <li><h3>Project work</h3><p>Your project lead shares progress at agreed milestones.</p></li>
+        <li><h3>Report delivery</h3><p>Full report, raw data and figures, with a debrief call to discuss results.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap terms" aria-label="Terms">
+    <div><h3>Pricing & taxes</h3><p>List prices are in US dollars and exclude VAT, withholding and other taxes, which apply according to your location. Shipping and bank charges are borne by the client. Quotations are valid for 60 days.</p></div>
+    <div><h3>Confidentiality & IP</h3><p>Your structures, samples and data stay confidential. Results from fee-for-service work belong to you. Collaborative research follows Chulalongkorn University IP regulations.</p></div>
+    <div><h3>Samples & timelines</h3><p>Turnaround is counted from receipt of complete samples or data and a confirmed order. Sample requirements and shipping instructions come with your quotation.</p></div>
+  </section>
+</main>
+
+<main id="view-quote" hidden>
+  <section class="wrap qhead">
+    <a href="#services" class="small" style="text-decoration:none">← Back to services</a>
+    <h1 style="margin-top:10px">Request a quote</h1>
+    <p>Tell us about your project. We review every request and reply with a formal quotation and any questions about scope.</p>
+  </section>
+  <section class="wrap qgrid">
+    <div>
+      <form class="panel" id="qform" novalidate>
+        <h2>Your details</h2>
+        <div class="fgrid">
+          <div class="field"><label for="f-name">Full name</label><input id="f-name" autocomplete="name" required><span class="err">Enter your name.</span></div>
+          <div class="field"><label for="f-email">Work email</label><input id="f-email" type="email" autocomplete="email" required><span class="err">Enter a valid email address.</span></div>
+          <div class="field"><label for="f-org">Organisation</label><input id="f-org" autocomplete="organization" required><span class="err">Enter your organisation.</span></div>
+          <div class="field"><label for="f-country">Country</label><input id="f-country" autocomplete="country-name" required><span class="err">Enter your country.</span></div>
+          <div class="field"><label for="f-type">Organisation type</label>
+            <select id="f-type"><option>Pharmaceutical / biotech company</option><option>Cosmetics / nutraceutical company</option><option>University / research institute</option><option>Hospital / government agency</option><option>Start-up</option><option>Other</option></select></div>
+          <div class="field"><label for="f-phone">Phone <i>(optional)</i></label><input id="f-phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <h2 style="margin-top:26px">Project</h2>
+        <div class="fgrid">
+          <div class="field full"><label for="f-desc">Project description</label><textarea id="f-desc" required placeholder="Target or product, compounds or samples, objectives, any data you already have"></textarea><span class="err">Describe your project in a few sentences.</span></div>
+          <div class="field"><label for="f-samples">Samples or compounds <i>(approx. number)</i></label><input id="f-samples" inputmode="numeric"></div>
+          <div class="field"><label for="f-time">Preferred timeline</label>
+            <select id="f-time"><option>Flexible</option><option>Within 1 month</option><option>1–3 months</option><option>3–6 months</option><option>More than 6 months</option></select></div>
+          <div class="field full"><label class="check" for="f-nda"><input type="checkbox" id="f-nda"> We need an NDA before sharing structures or samples</label></div>
+          <div class="field full"><label class="check" for="f-call"><input type="checkbox" id="f-call" checked> I would like a free 30-minute scoping call</label></div>
+        </div>
+        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button class="primary" type="submit">Prepare my request</button>
+          <span class="small" style="margin:0">Structure files and sample data are exchanged securely after the NDA.</span>
+        </div>
+      </form>
+      <div class="panel done" id="done" hidden style="margin-top:20px">
+        <h2>Your request is ready to send</h2>
+        <p class="small" style="font-size:14px;margin-top:0">Reference <b class="mono" id="ref"></b>. Copy the request below and email it to our service team. We will reply with a formal quotation.</p>
+        <pre id="summary"></pre>
+        <div class="copyline"><button class="primary" type="button" id="copy-sum">Copy request</button><span class="small" id="copy-msg" style="margin:0" aria-live="polite"></span></div>
+        <div class="copyline"><span class="small" style="margin:0">Email to</span><code id="mail"></code><button class="ghost" type="button" id="copy-mail">Copy address</button></div>
+      </div>
+    </div>
+    <aside class="panel sum" aria-label="Selected services">
+      <h2>Selected services</h2>
+      <div id="lines"></div>
+      <div id="totals"></div>
+      <p class="small">Indicative total at list prices, before taxes. Your quotation confirms the final price for the agreed scope.</p>
+    </aside>
+  </section>
+</main>
+
+<div class="qbar" aria-live="polite"><span id="qbar-t"></span><a href="#quote">Review request →</a></div>
+
+<footer>
+  <div class="wrap">
+    <div><b>CE-NPACD</b><br>Center of Excellence in Natural Products for Ageing and Chronic Diseases<br>Faculty of Pharmaceutical Sciences, Chulalongkorn University</div>
+    <div>254 Phayathai Road, Pathumwan<br>Bangkok 10330, Thailand</div>
+    <div>Service enquiries<br><span class="mono" style="user-select:all">pornchai.r@chula.ac.th</span></div>
+  </div>
+</footer>
+
+<script>
+const CATS=[{"id":"comp","name":"Computational & AI Drug Discovery","short":"Computational","blurb":"Target analysis, docking, molecular dynamics, machine learning and generative design, delivered with publication-ready figures and full methods."},{"id":"form","name":"AI-Driven Formulation","short":"AI Formulation","blurb":"Pre-formulation modelling, machine-learning formulation optimisation and lab-scale nanoformulation, from first screen to product prototype."},{"id":"lab","name":"Wet Lab Services","short":"Wet Lab","blurb":"Nanoparticle characterisation, pharmaceutical analysis, natural products chemistry, in vitro bioassays and permeation studies."},{"id":"adv","name":"Advisory & Training","short":"Advisory","blurb":"Scientific consulting, regulatory support for Thailand and ASEAN, writing support, workshops and contract research."}];
+const GROUPS=[{"cat":"comp","id":"A1","name":"Target & Data Intelligence","items":[{"c":"A1.1","n":"Target Identification & Network Pharmacology","d":"Predict targets for up to 20 compounds or extract constituents; build compound–target–disease and PPI networks; GO/KEGG enrichment.","o":"Report, Cytoscape network figures, ranked hub targets","t":"4–6 weeks","p":2250,"u":"per project"},{"c":"A1.2","n":"Bioactivity Data Curation","d":"Retrieve and clean IC50/Ki/EC50 data from ChEMBL, PubChem and BindingDB for one target; structure standardisation and de-duplication.","o":"Model-ready dataset (.csv/.sdf) with curation log","t":"2 weeks","p":1250,"u":"per target"},{"c":"A1.3","n":"Protein Structure Preparation & Modelling","d":"PDB structure preparation, homology modelling, AlphaFold model assessment and binding-pocket detection.","o":"Prepared structure files and quality report","t":"2 weeks","p":750,"u":"per structure"}]},{"cat":"comp","id":"A2","name":"Docking & Virtual Screening","items":[{"c":"A2.1","n":"Molecular Docking","d":"One target, up to 10 ligands. AutoDock Vina and GNINA CNN scoring, redocking validation (RMSD), 2D/3D interaction maps.","o":"Score table, publication-ready interaction figures, report","t":"2–4 weeks","p":1250,"u":"per target","x":"Additional ligands $75 each"},{"c":"A2.2","n":"Consensus & Ensemble Docking","d":"Two or more docking engines or an MD-derived receptor ensemble to reduce false positives, with consensus ranking.","o":"Consensus ranking and comparison report","t":"4–6 weeks","p":2250,"u":"per target"},{"c":"A2.3","n":"Reverse Docking & Target Fishing","d":"One compound screened against a disease-focused panel of 50–100 targets (inflammation, cancer, ageing, metabolic).","o":"Ranked target list with poses for top targets","t":"4–6 weeks","p":2250,"u":"per compound"},{"c":"A2.4","n":"Structure-Based Virtual Screening","d":"Screen ZINC, Enamine, natural-product or client libraries: drug-likeness filters, docking, rescoring and clustering.","o":"20–50 prioritised hits with selection rationale","t":"8–10 weeks","p":4500,"u":"up to 10,000 compounds","x":"Up to 100,000 compounds $9,000; larger libraries by quote"},{"c":"A2.5","n":"Pharmacophore Modelling & Screening","d":"Ligand- or structure-based pharmacophore generation, ROC/enrichment validation and library screening.","o":"Validated model and hit list","t":"8 weeks","p":3500,"u":"per model"}]},{"cat":"comp","id":"A3","name":"Molecular Dynamics & Free Energy","items":[{"c":"A3.1","n":"Molecular Dynamics Simulation (100 ns)","d":"One complex in GROMACS or AMBER. RMSD, RMSF, Rg, SASA, hydrogen bonds, contact frequency, PCA and free-energy landscape.","o":"Publication-ready plots, snapshots, report","t":"5–8 weeks","p":1750,"u":"per complex","x":"Triplicate runs (3 × 100 ns) $4,500"},{"c":"A3.2","n":"MM/GBSA & MM/PBSA Binding Energy","d":"End-point binding free energy from MD trajectories with per-residue decomposition.","o":"ΔG(bind) values and residue contribution plots","t":"+2 weeks","p":750,"u":"per complex"},{"c":"A3.3","n":"Membrane Protein MD (GPCRs, Transporters)","d":"Lipid-bilayer systems built with CHARMM-GUI, 200 ns per system. Suited to GPCRs such as A2AR and CXCR4.","o":"Full analysis report","t":"10 weeks","p":5500,"u":"per system"},{"c":"A3.4","n":"Advanced Free Energy Methods","d":"FEP/TI relative binding free energies, umbrella sampling and metadynamics for unbinding or membrane permeation PMFs.","o":"ΔΔG or PMF profiles with report","t":"3–5 months","p":9000,"u":"per project","f":true}]},{"cat":"comp","id":"A4","name":"Machine Learning, QSAR & ADMET","items":[{"c":"A4.1","n":"QSAR & Machine Learning Model Development","d":"One target or endpoint. Descriptors and fingerprints; RF, XGBoost, SVM and DNN/GNN models; cross-validation, external test set and applicability domain, following OECD QSAR principles.","o":"Trained model, KNIME/Python workflow, SHAP interpretation, report","t":"8–12 weeks","p":6500,"u":"per endpoint"},{"c":"A4.2","n":"ML-Based Virtual Screening","d":"Screen large libraries with an existing or new model, combined with docking in a hybrid pipeline.","o":"Ranked hit list with confidence scores","t":"5–8 weeks","p":2750,"u":"per screen"},{"c":"A4.3","n":"ADMET & Toxicity Prediction","d":"Drug-likeness, solubility, GI absorption, BBB, CYP inhibition, hERG, Ames and hepatotoxicity across multiple predictors.","o":"ADMET table, radar and BOILED-Egg plots","t":"2 weeks","p":1250,"u":"up to 100 compounds","x":"Smaller sets $50 per compound (minimum 10)"},{"c":"A4.4","n":"Custom AI Workflow & Deployment","d":"Automated KNIME or Python pipelines, dashboards or web apps built for your team, with training.","o":"Working system, user guide, source code as contracted","t":"3–6 months","p":7500,"u":"per project","f":true}]},{"cat":"comp","id":"A5","name":"Generative AI & Lead Optimisation","items":[{"c":"A5.1","n":"De Novo Generative Design (REINVENT)","d":"Reinforcement-learning molecule generation scored by docking, QSAR, ADMET and synthetic accessibility, with a novelty check.","o":"50 ranked candidates with structural rationale","t":"3–4 months","p":10500,"u":"per target"},{"c":"A5.2","n":"Lead Optimisation & Scaffold Hopping","d":"Matched molecular pairs, R-group enumeration, scaffold hopping and bioisostere replacement, assessed by docking and ADMET.","o":"Recommended analogue series and SAR map","t":"6–8 weeks","p":4500,"u":"per series"},{"c":"A5.3","n":"In Silico Prodrug Design","d":"Promoiety design with predicted logP, solubility and hydrolytic lability, plus docking to the activating enzyme.","o":"Prodrug candidates with rationale","t":"8–10 weeks","p":5500,"u":"per parent drug"}]},{"cat":"comp","id":"A6","name":"Quantum Chemistry","items":[{"c":"A6.1","n":"DFT Calculations","d":"Geometry optimisation, HOMO–LUMO, electrostatic potential, NBO and reactivity descriptors (up to 50 heavy atoms).","o":"Results with orbital and MEP images","t":"3–5 weeks","p":900,"u":"per molecule"},{"c":"A6.2","n":"Spectral Prediction for Structure Elucidation","d":"Calculated NMR, IR, UV and ECD spectra compared with experiment, e.g. absolute configuration of natural products.","o":"Calculated spectra and comparison","t":"5 weeks","p":1000,"u":"per molecule"}]},{"cat":"comp","id":"PKC","name":"Computational Packages","pkg":true,"items":[{"c":"PK-C1","n":"Publication Support Package","d":"Docking (up to 10 ligands), MD 3 × 100 ns for two complexes, MM/GBSA and ADMET, with drafted Methods and Results text and high-resolution figures.","o":"Manuscript-ready in silico section","t":"8 weeks","p":5000,"u":"per package"},{"c":"PK-C2","n":"Natural Product Mechanism Package","d":"Network pharmacology, reverse docking, confirmatory docking and MD for two complexes, interpreted as a mechanism-of-action report.","o":"Mechanism report with figures","t":"10–12 weeks","p":9000,"u":"per package"},{"c":"PK-C3","n":"Hit Discovery Package","d":"Target preparation, hybrid structure/ML screening of up to 100,000 compounds, rescoring of the top 50, MD 3 × 100 ns and MM/GBSA for the top 5, and ADMET.","o":"Purchase or synthesis shortlist with evidence","t":"5 months","p":22500,"u":"per target"},{"c":"PK-C4","n":"AI Lead Design Package","d":"QSAR model, REINVENT de novo design, docking and MD, ADMET and synthesisability ranking in one programme.","o":"Ranked novel leads with full data package","t":"6–7 months","p":31500,"u":"per target"}]},{"cat":"form","id":"B1","name":"In Silico Pre-formulation","items":[{"c":"B1.1","n":"Physicochemical Profiling","d":"Predicted solubility, logP/logD, pKa, provisional BCS class and structurally labile groups.","o":"Pre-formulation profile with formulation strategy","t":"2 weeks","p":1250,"u":"per API"},{"c":"B1.2","n":"Drug–Excipient, Polymer & Lipid Compatibility","d":"Hansen solubility parameters, Flory–Huggins χ and drug–carrier MD to select polymers, lipids and oils.","o":"Ranked excipient shortlist and report","t":"4–6 weeks","p":2250,"u":"per API"},{"c":"B1.3","n":"Cocrystal, Salt & Cyclodextrin Screening","d":"ML and COSMO-based coformer prediction and docking with cyclodextrins.","o":"Candidate list for laboratory confirmation","t":"5–8 weeks","p":2750,"u":"per API"}]},{"cat":"form","id":"B2","name":"AI-Guided Formulation Optimisation","items":[{"c":"B2.1","n":"AI-Assisted Design of Experiments","d":"Selection of CQAs, CPPs and ranges; Box–Behnken, CCD or D-optimal designs that minimise experimental runs.","o":"Experimental plan with rationale","t":"2 weeks","p":1500,"u":"per study"},{"c":"B2.2","n":"ML Formulation Modelling & Bayesian Optimisation","d":"Models predicting particle size, PDI, encapsulation and release from your data; Gaussian-process Bayesian optimisation proposes the next formulations and maps the design space.","o":"Predictive model, recommended formulations, response surfaces","t":"6–8 weeks","p":6500,"u":"per study"},{"c":"B2.3","n":"Closed-Loop AI Formulation","d":"Two to three cycles of AI-proposed formulations, laboratory preparation and characterisation, and model retraining until targets are met.","o":"Optimised formulation, complete dataset, report","t":"6–9 months","p":22500,"u":"per project","f":true}]},{"cat":"form","id":"B3","name":"Molecular Modelling of Nanocarriers","items":[{"c":"B3.1","n":"Drug–Carrier Interaction MD","d":"Drug interactions with lipid bilayers, chitosan, alginate, PLGA or cyclodextrins: location, hydrogen bonding and interaction energy.","o":"Report with simulation snapshots","t":"8–10 weeks","p":5500,"u":"per system"},{"c":"B3.2","n":"MOF Drug-Loading Simulation","d":"Docking, MD or GCMC of drugs in MOF pores such as ZIF-8, with theoretical loading capacity.","o":"Report with figures","t":"8 weeks","p":4500,"u":"per system"},{"c":"B3.3","n":"Coarse-Grained Self-Assembly","d":"Martini CG-MD of liposome, micelle or nanoparticle formation and the effect of composition.","o":"Report and simulation video","t":"3–4 months","p":9000,"u":"per system"}]},{"cat":"form","id":"B4","name":"Nanoformulation Development","items":[{"c":"B4.1","n":"Nanoliposomes & Chitosan-Coated Liposomes","d":"One API, up to three optimisation rounds by thin-film or ethanol injection with sonication or extrusion. Size, PDI, zeta potential, encapsulation and release.","o":"Formulation, SOP, characterisation data, report","t":"3–4 months","p":12500,"u":"per API"},{"c":"B4.2","n":"Transethosomes & Ethosomes","d":"Transdermal vesicles with full characterisation, deformability and preliminary Franz-cell skin permeation.","o":"Formulation, SOP, permeation data","t":"4–5 months","p":15000,"u":"per API"},{"c":"B4.3","n":"Chitosan–Alginate & Polymeric Nanoparticles","d":"Ionic gelation, polyelectrolyte complexation or PLGA emulsion and nanoprecipitation, with full characterisation.","o":"Formulation, SOP, report","t":"3–4 months","p":12500,"u":"per API"},{"c":"B4.4","n":"MOF Nanocarriers (ZIF-8 and Coated MOFs)","d":"Synthesis, drug loading, polymer coating such as alginate, and pH-responsive release.","o":"Formulation with characterisation incl. XRD/TEM","t":"6–7 months","p":18000,"u":"per API"},{"c":"B4.5","n":"Nanoemulsions, SNEDDS & SMEDDS","d":"Oil, surfactant and co-surfactant screening, pseudo-ternary phase diagrams, thermodynamic stability and dispersion tests.","o":"Formulation, phase diagram, report","t":"3–4 months","p":10500,"u":"per API"},{"c":"B4.6","n":"Solid Lipid Nanoparticles & NLCs","d":"Hot homogenisation or microemulsion methods; size, zeta potential, encapsulation and crystallinity by DSC.","o":"Formulation and report","t":"3–5 months","p":15000,"u":"per API"},{"c":"B4.7","n":"Polymeric Micelles & Cyclodextrin Complexes","d":"Phase-solubility studies, complex preparation and FTIR/DSC confirmation for solubility enhancement.","o":"Formulation with confirmation data","t":"8–12 weeks","p":7500,"u":"per API"},{"c":"B4.8","n":"Lyophilisation & Cryoprotectant Screening","d":"Screening of trehalose, sucrose and mannitol and freeze-drying conditions, with redispersibility testing.","o":"Optimised lyophilisation conditions","t":"8–10 weeks","p":2750,"u":"per formulation"}]},{"cat":"form","id":"B5","name":"Product Prototypes & Stability","items":[{"c":"B5.1","n":"Cosmeceutical & Topical Prototype","d":"Nanocarriers incorporated into gels, creams or serums; pH, viscosity, spreadability and preliminary stability.","o":"Prototype, formula, report","t":"3–4 months","p":9000,"u":"per prototype"},{"c":"B5.2","n":"Nutraceutical & Supplement Prototype","d":"Encapsulated natural extracts by spray or freeze drying as powders or capsules; content uniformity and simulated GI stability.","o":"Prototype, formula, report","t":"4–5 months","p":11500,"u":"per prototype"},{"c":"B5.3","n":"ICH Stability Study","d":"Three conditions (4 °C, 25 °C/60% RH, 40 °C/75% RH) at 0, 1, 3 and 6 months: size, PDI, zeta potential, encapsulation, assay and appearance.","o":"Stability report with shelf-life estimate","t":"6 months + 6 weeks reporting","p":6500,"u":"per formulation"},{"c":"B5.4","n":"Scale-Up Feasibility & Technology Transfer","d":"Critical parameter assessment, 10× lab-scale batches, SOPs and batch records for OEM manufacturers.","o":"Technology-transfer package","t":"5–8 months","p":null,"u":"custom quote"}]},{"cat":"form","id":"PKF","name":"Formulation Packages","pkg":true,"items":[{"c":"PK-F1","n":"AI Nanoformulation Starter","d":"Physicochemical profiling, excipient compatibility, AI-assisted DoE and lab-scale development on one nanocarrier platform.","o":"Lead formulation and development roadmap","t":"4–5 months","p":15000,"u":"per API"},{"c":"PK-F2","n":"Concept-to-Prototype Programme","d":"Closed-loop AI formulation, product prototype and three-month stability, with data to support registration.","o":"Prototype product with supporting dossier data","t":"10–12 months","p":37500,"u":"per product"}]},{"cat":"lab","id":"C1","name":"Nanoparticle & Physicochemical Characterisation","items":[{"c":"C1.1","n":"Particle Size & PDI (DLS)","d":"Triplicate measurement reporting Z-average, PDI and size distribution.","o":"Data report","t":"2 weeks","p":75,"u":"per sample"},{"c":"C1.2","n":"Zeta Potential","d":"Triplicate measurement in aqueous media.","o":"Data report","t":"2 weeks","p":90,"u":"per sample"},{"c":"C1.3","n":"Encapsulation Efficiency & Drug Loading","d":"Separation of free drug by ultrafiltration or centrifugation, quantified by HPLC or UV.","o":"%EE and %DL with raw data","t":"2 weeks","p":250,"u":"per sample"},{"c":"C1.4","n":"In Vitro Release Study","d":"Dialysis or Franz cell, 6–8 time points in triplicate at up to two pH values, with zero-order, first-order, Higuchi and Korsmeyer–Peppas fitting.","o":"Release profiles and kinetic models","t":"4 weeks","p":1250,"u":"per formulation"},{"c":"C1.5","n":"FTIR (ATR)","d":"Spectrum with interpretation of interactions or complex formation.","o":"Spectrum and interpretation","t":"2–3 weeks","p":75,"u":"per sample"},{"c":"C1.6","n":"DSC or TGA","d":"Thermal behaviour, crystallinity and thermal stability.","o":"Thermogram and interpretation","t":"3 weeks","p":150,"u":"per sample per technique"},{"c":"C1.7","n":"TEM / SEM Morphology","d":"TEM or SEM imaging, including sample preparation and interpretation.","o":"Micrographs and interpretation","t":"6 weeks","p":450,"u":"per sample"},{"c":"C1.8","n":"XRD / BET Surface Area","d":"Crystallinity, surface area and porosity. Suited to MOFs and solid dispersions.","o":"Diffractogram or isotherm with interpretation","t":"6 weeks","p":400,"u":"per sample"},{"c":"C1.9","n":"Physical Tests","d":"pH, viscosity, spreadability, osmolality and redispersibility.","o":"Data report","t":"2 weeks","p":40,"u":"per test"}]},{"cat":"lab","id":"C2","name":"Pharmaceutical Analysis","items":[{"c":"C2.1","n":"HPLC Assay (Established Method)","d":"Quantification with system suitability on an existing method.","o":"Certificate of analysis","t":"2 weeks","p":300,"u":"first sample","x":"Additional samples $100 each"},{"c":"C2.2","n":"Marker Compound Quantification","d":"Curcuminoids, oleuropein, honokiol/magnolol, mangiferin, andrographolide and other markers in extracts.","o":"Certificate of analysis","t":"2–4 weeks","p":400,"u":"per marker per sample"},{"c":"C2.3","n":"HPLC Method Development","d":"One analyte in one matrix, developed to pass system suitability.","o":"Method and development report","t":"6–8 weeks","p":3000,"u":"per method"},{"c":"C2.4","n":"Method Validation (ICH Q2(R2))","d":"Specificity, linearity, accuracy, precision, LOD/LOQ and robustness.","o":"Validation report","t":"8–12 weeks","p":6500,"u":"per method"},{"c":"C2.5","n":"Forced Degradation & Stability-Indicating Method","d":"Acid, base, oxidative, thermal and photolytic stress with separation of degradation products.","o":"Degradation profile and method","t":"10 weeks","p":4500,"u":"per API"},{"c":"C2.6","n":"Dissolution Testing","d":"USP apparatus 1 or 2, six vessels, one profile of up to six time points, with f2 comparison.","o":"Dissolution profile report","t":"3–5 weeks","p":1000,"u":"per profile"},{"c":"C2.7","n":"UV-Vis Assay","d":"Quantification against an established standard curve.","o":"Data report","t":"2 weeks","p":40,"u":"per sample"},{"c":"C2.8","n":"LC-MS/MS Identification","d":"Identification of compounds, metabolites or degradants by high-resolution LC-MS/MS.","o":"Identification report","t":"9–12 weeks","p":null,"u":"custom quote"}]},{"cat":"lab","id":"C3","name":"Natural Products Chemistry","items":[{"c":"C3.1","n":"Extraction","d":"Maceration, Soxhlet or ultrasound-assisted extraction of up to 1 kg dried material, with yield.","o":"Extract and yield report","t":"2–4 weeks","p":750,"u":"per batch"},{"c":"C3.2","n":"Fractionation","d":"Liquid–liquid partitioning or column chromatography with TLC profiling.","o":"Fractions and TLC profiles","t":"4–6 weeks","p":1500,"u":"per extract"},{"c":"C3.3","n":"Isolation & Structure Elucidation","d":"Bioassay-guided isolation with structure elucidation by 1D/2D NMR and MS.","o":"Pure compound with structure report","t":"3–9 months","p":5500,"u":"per compound","f":true},{"c":"C3.4","n":"Extract Standardisation Package","d":"Total phenolics, total flavonoids, HPLC/TLC fingerprint and one marker compound.","o":"Standardisation report","t":"4 weeks","p":1250,"u":"per extract"},{"c":"C3.5","n":"Total Phenolic or Flavonoid Content","d":"Colorimetric assay in triplicate.","o":"Data report","t":"2 weeks","p":100,"u":"per assay per sample"}]},{"cat":"lab","id":"C4","name":"In Vitro Bioactivity","note":"IC50 determinations use at least five concentrations in triplicate.","items":[{"c":"C4.1","n":"Antioxidant Assays","d":"DPPH, ABTS or FRAP.","o":"IC50 or equivalent values","t":"2 weeks","p":150,"u":"per assay per sample"},{"c":"C4.2","n":"Enzyme Inhibition (Standard Panel)","d":"Tyrosinase, collagenase, elastase, hyaluronidase, α-glucosidase, α-amylase, AChE, lipase or xanthine oxidase.","o":"IC50 with positive control","t":"2–4 weeks","p":400,"u":"per enzyme per sample"},{"c":"C4.3","n":"Enzyme Inhibition (Specialised)","d":"MMPs, 5α-reductase, COX-1/2, cathepsin K or DPP-4 by kit-based assays.","o":"IC50 with positive control","t":"5–8 weeks","p":900,"u":"per enzyme per sample"},{"c":"C4.4","n":"Cytotoxicity (MTT / SRB)","d":"One cell line, eight concentrations, one time point. Cancer lines (MDA-MB-231, MCF-7, HCT116, HepG2) or normal cells (HDF, HaCaT).","o":"Dose–response curve and IC50","t":"4 weeks","p":650,"u":"per cell line per sample"},{"c":"C4.5","n":"Anti-inflammatory Activity (NO, RAW 264.7)","d":"Nitric oxide production by Griess assay with parallel viability.","o":"IC50 and viability data","t":"4 weeks","p":750,"u":"per sample"},{"c":"C4.6","n":"Cytokine ELISA","d":"TNF-α, IL-6, IL-1β or PGE2, up to six treatment groups.","o":"Quantified cytokine levels","t":"6–9 weeks","p":1000,"u":"per cytokine"},{"c":"C4.7","n":"Intracellular ROS (DCFH-DA)","d":"Microplate or fluorescence microscopy readout.","o":"ROS data and images","t":"4 weeks","p":900,"u":"per sample"},{"c":"C4.8","n":"Cellular Uptake of Nanoparticles","d":"Fluorescently labelled nanoparticles by microscopy or flow cytometry over a time course.","o":"Images and uptake quantification","t":"4–6 weeks","p":1250,"u":"per formulation"},{"c":"C4.9","n":"Apoptosis & Cell Cycle (Flow Cytometry)","d":"Annexin V/PI or PI cell-cycle analysis.","o":"Flow data and analysis","t":"5–8 weeks","p":1250,"u":"per assay"},{"c":"C4.10","n":"Wound Healing, Migration & Invasion","d":"Scratch assay or transwell migration/invasion.","o":"Images and quantification","t":"4–6 weeks","p":900,"u":"per assay"},{"c":"C4.11","n":"Cellular Senescence (SA-β-gal)","d":"Induced senescence model with SA-β-gal staining and quantification for anti-ageing claims.","o":"Images and quantification","t":"8–10 weeks","p":1250,"u":"per sample"},{"c":"C4.12","n":"Western Blot & qPCR","d":"Western blot per protein target (up to six groups); qPCR per gene including RNA extraction and cDNA synthesis.","o":"Blots or expression data with analysis","t":"9–12 weeks","p":1250,"u":"per protein target","x":"qPCR $550 per gene"},{"c":"C4.13","n":"3D Tumour Spheroid Model","d":"Spheroid formation with viability and nanoparticle penetration.","o":"Images and viability data","t":"8–10 weeks","p":2250,"u":"per formulation"},{"c":"C4.14","n":"Antimicrobial Activity (MIC/MBC)","d":"Broth microdilution against S. aureus, E. coli, C. albicans and other strains.","o":"MIC/MBC values","t":"3–5 weeks","p":350,"u":"per strain per sample"}]},{"cat":"lab","id":"C5","name":"Permeation & Biopharmaceutics","items":[{"c":"C5.1","n":"Skin Permeation (Franz Diffusion Cell)","d":"Porcine skin or Strat-M membrane, 24 h, n = 3, with flux and permeability coefficient.","o":"Permeation profile and parameters","t":"4–6 weeks","p":2250,"u":"per formulation"},{"c":"C5.2","n":"Skin Retention & Tape Stripping","d":"Drug deposited in stratum corneum, epidermis and dermis.","o":"Skin distribution data","t":"4 weeks","p":1250,"u":"per formulation"},{"c":"C5.3","n":"PAMPA","d":"Passive permeability in GI, BBB or skin models.","o":"Permeability values","t":"5 weeks","p":1000,"u":"per compound"},{"c":"C5.4","n":"Caco-2 Permeability","d":"Bidirectional transport with Papp and efflux ratio.","o":"Papp and efflux data","t":"3–4 months","p":4500,"u":"per compound"},{"c":"C5.5","n":"Simulated GI Stability & Mucoadhesion","d":"Nanoparticle stability in SGF/SIF and mucin binding.","o":"Stability and binding data","t":"4 weeks","p":750,"u":"per formulation"},{"c":"C5.6","n":"In Vivo Pharmacokinetics & Efficacy","d":"Pharmacokinetic and efficacy studies in established animal models under institutional animal ethics approval.","o":"Study report","t":"Per protocol","p":null,"u":"custom quote"}]},{"cat":"adv","id":"D","name":"Advisory, Regulatory & Training","items":[{"c":"D1","n":"Scientific Consultation","d":"Project design, technical feasibility and data interpretation. Your first 30-minute scoping call is free.","o":"Meeting notes and recommendations","t":"On request","p":250,"u":"per hour"},{"c":"D2","n":"Product Development Advisory","d":"Monthly meetings, data review and guidance on formulation strategy and product claims.","o":"Monthly advisory sessions","t":"Monthly","p":1750,"u":"per month"},{"c":"D3","n":"Thai FDA & ASEAN Regulatory Support","d":"Label and claim review for dietary supplements and cosmetics entering Thailand. ACTD drug dossiers quoted separately.","o":"Review report with required changes","t":"4–6 weeks","p":1250,"u":"per product"},{"c":"D4","n":"Scientific Writing Support","d":"In silico Methods and Results sections, figures, technical reports and product science dossiers.","o":"Written sections or reports","t":"4–8 weeks","p":1250,"u":"per document","f":true},{"c":"D5","n":"Workshops & Training","d":"Docking, MD, KNIME and machine learning for drug discovery, and AI for formulation. One day for up to 20 participants, on site or online.","o":"Hands-on training with materials","t":"1–3 days","p":3500,"u":"per day","x":"Individual seats $300 per participant per day"},{"c":"D6","n":"Contract & Collaborative Research","d":"Long-term programmes under agreed terms of reference, with IP arrangements under Chulalongkorn University regulations and support for co-funded grants.","o":"Research programme per agreement","t":"Per project","p":null,"u":"custom quote"}]}];
+const EMAIL = "pornchai.r@chula.ac.th";
+const $ = s => document.querySelector(s);
+const fmt = n => "$" + n.toLocaleString("en-US");
+const ITEMS = {}; GROUPS.forEach(g => g.items.forEach(i => { ITEMS[i.c] = Object.assign({ cat: g.cat, pkg: !!g.pkg }, i); }));
+let cart = {};
+try { cart = JSON.parse(localStorage.getItem("ce-cart") || "{}") || {}; } catch (e) { cart = {}; }
+Object.keys(cart).forEach(k => { if (!ITEMS[k]) delete cart[k]; });
+let filter = "all", query = "";
+const save = () => { try { localStorage.setItem("ce-cart", JSON.stringify(cart)); } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function priceHTML(i) {
+  if (i.p == null) return `<div class="q">Custom quote</div><div class="u">Priced to scope</div>`;
+  return `<div class="v">${i.f ? "<small>from</small>" : ""}${fmt(i.p)}</div><div class="u">${esc(i.u)}</div>`;
+}
+
+const total = Object.keys(ITEMS).length;
+$("#facts").innerHTML = `<span><b>${total}</b> services</span><span><b>${CATS.length}</b> disciplines</span><span><b>USD</b> list prices</span><span><b>NDA</b> on request</span>`;
+$("#serve").innerHTML = ["Pharmaceutical & biotech", "Cosmeceuticals", "Nutraceuticals & herbal products", "Academic & clinical research"].map(s => `<span>${s}</span>`).join("");
+
+function counts() { const c = { all: 0 }; Object.values(ITEMS).forEach(i => { if (match(i)) { c[i.cat] = (c[i.cat] || 0) + 1; c.all++; } }); return c; }
+function match(i) { if (!query) return true; const h = (i.c + " " + i.n + " " + i.d + " " + i.o + " " + (i.x || "")).toLowerCase(); return query.split(/\s+/).every(w => h.includes(w)); }
+
+function renderFilters() {
+  const c = counts();
+  const opts = [{ id: "all", short: "All services", name: "All services" }].concat(CATS);
+  $("#rail").innerHTML = opts.map(o => `<button type="button" data-f="${o.id}" aria-pressed="${filter === o.id}"><span>${esc(o.id === "all" ? o.name : o.name)}</span><span class="c">${c[o.id] || 0}</span></button>`).join("") + `<p class="hint">Add services to your request, then open <b>Request a quote</b> to send project details.</p>`;
+  $("#chips").innerHTML = opts.map(o => `<button type="button" data-f="${o.id}" aria-pressed="${filter === o.id}">${esc(o.short)}</button>`).join("");
+}
+
+function renderCatalogue() {
+  let html = "";
+  CATS.forEach(cat => {
+    if (filter !== "all" && filter !== cat.id) return;
+    const groups = GROUPS.filter(g => g.cat === cat.id).map(g => ({ g, items: g.items.filter(match) })).filter(x => x.items.length);
+    if (!groups.length) return;
+    html += `<section class="discipline" id="d-${cat.id}"><div class="dhead"><h2>${esc(cat.name)}</h2><p>${esc(cat.blurb)}</p></div>`;
+    groups.forEach(({ g, items }) => {
+      html += `<div class="group"><div class="ghead"><span>${esc(g.id)}</span><span class="gn">${esc(g.name)}</span>${g.pkg ? '<span class="pk">· bundled programmes</span>' : ""}</div>${g.note ? `<p class="gnote">${esc(g.note)}</p>` : ""}`;
+      items.forEach(i => {
+        const on = !!cart[i.c];
+        html += `<article class="row${g.pkg ? " pkgrow" : ""}">
+          <div class="code">${esc(i.c)}</div>
+          <div class="main"><h3>${esc(i.n)}</h3>
+            <p class="d">${esc(i.d)}</p>
+            <p class="o"><span>Deliverables</span>${esc(i.o)}</p>
+            ${i.x ? `<p class="x">${esc(i.x)}</p>` : ""}</div>
+          <div class="tat"><b>Turnaround</b>${esc(i.t)}</div>
+          <div class="price">${priceHTML(i)}</div>
+          <button type="button" class="add" data-add="${esc(i.c)}" aria-pressed="${on}">${on ? "Added ✓" : "Add"}</button>
+        </article>`;
+      });
+      html += `</div>`;
+    });
+    html += `</section>`;
+  });
+  $("#catalogue").innerHTML = html || `<p class="empty">No services match “${esc(query)}”. Try a broader term, or describe your need in a quote request and we will scope it.</p>`;
+}
+
+function renderCartCount() {
+  const n = Object.keys(cart).length;
+  $("#cart-n").textContent = n;
+  document.body.classList.toggle("has-cart", n > 0);
+  $("#qbar-t").textContent = n + (n === 1 ? " service selected" : " services selected");
+}
+
+function renderQuote() {
+  const keys = Object.keys(cart);
+  if (!keys.length) {
+    $("#lines").innerHTML = `<p class="small" style="font-size:14px">No services selected yet. <a href="#services">Browse the catalogue</a> and add services, or describe your needs in the form and we will recommend a scope.</p>`;
+    $("#totals").innerHTML = ""; return;
+  }
+  let sum = 0, hasFrom = false, custom = 0;
+  $("#lines").innerHTML = keys.map(k => {
+    const i = ITEMS[k], q = cart[k];
+    let amt;
+    if (i.p == null) { custom++; amt = `<span style="color:var(--ochre)">Quote</span>`; }
+    else { sum += i.p * q; if (i.f) hasFrom = true; amt = (i.f ? "from " : "") + fmt(i.p * q); }
+    return `<div class="line"><div class="t"><span>${esc(i.c)}</span>${esc(i.n)}</div>
+      <div class="amt">${amt}</div>
+      <div class="meta">${i.p == null ? "" : `<span class="qty"><button type="button" data-dec="${esc(k)}" aria-label="Decrease quantity">−</button><input type="number" min="1" value="${q}" data-qty="${esc(k)}" aria-label="Quantity for ${esc(i.n)}"><button type="button" data-inc="${esc(k)}" aria-label="Increase quantity">+</button></span>`}
+      <span>${i.p == null ? "Priced to scope" : "× " + esc(i.u)}</span><button type="button" class="rm" data-rm="${esc(k)}">Remove</button></div></div>`;
+  }).join("");
+  $("#totals").innerHTML = `<div class="total"><span>Indicative total${custom ? ` + ${custom} custom` : ""}</span><span class="v">${hasFrom ? "<small style='font-size:13px;color:var(--muted)'>from </small>" : ""}${fmt(sum)}</span></div>`;
+}
+
+function setView() {
+  const v = location.hash === "#quote" ? "quote" : "services";
+  $("#view-services").hidden = v !== "services";
+  $("#view-quote").hidden = v !== "quote";
+  document.body.classList.toggle("view-services", v === "services");
+  $("#nav-services").classList.toggle("on", v === "services");
+  if (v === "quote") { renderQuote(); window.scrollTo(0, 0); }
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("button,a"); if (!t) return;
+  if (t.dataset.f) { filter = t.dataset.f; renderFilters(); renderCatalogue(); const el = document.querySelector(".cat-layout"); if (el && window.scrollY > el.offsetTop) el.scrollIntoView({ block: "start" }); }
+  else if (t.dataset.add) { const k = t.dataset.add; if (cart[k]) delete cart[k]; else cart[k] = 1; save(); t.setAttribute("aria-pressed", !!cart[k]); t.textContent = cart[k] ? "Added ✓" : "Add"; renderCartCount(); }
+  else if (t.dataset.inc) { cart[t.dataset.inc]++; save(); renderQuote(); }
+  else if (t.dataset.dec) { const k = t.dataset.dec; cart[k] = Math.max(1, cart[k] - 1); save(); renderQuote(); }
+  else if (t.dataset.rm) { delete cart[t.dataset.rm]; save(); renderQuote(); renderCartCount(); renderCatalogue(); }
+  else if (t.dataset.scroll) { e.preventDefault(); if (location.hash === "#quote") { location.hash = "services"; setTimeout(() => $("#" + t.dataset.scroll).scrollIntoView(), 50); } else $("#" + t.dataset.scroll).scrollIntoView({ block: "start" }); }
+});
+document.addEventListener("change", e => {
+  const k = e.target.dataset && e.target.dataset.qty;
+  if (k) { cart[k] = Math.max(1, parseInt(e.target.value, 10) || 1); save(); renderQuote(); }
+});
+$("#q").addEventListener("input", e => { query = e.target.value.trim().toLowerCase(); renderFilters(); renderCatalogue(); });
+
+function copy(text, btn, msgEl) {
+  const ok = () => { if (msgEl) msgEl.textContent = "Copied"; else { const o = btn.textContent; btn.textContent = "Copied"; setTimeout(() => btn.textContent = o, 1500); } };
+  const fallback = () => { const r = document.createRange(); const n = msgEl ? $("#summary") : $("#mail"); r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r); if (msgEl) msgEl.textContent = "Selected. Press Ctrl+C or ⌘C to copy."; };
+  try { navigator.clipboard.writeText(text).then(ok, fallback); } catch (err) { fallback(); }
+}
+
+$("#qform").addEventListener("submit", e => {
+  e.preventDefault();
+  const req = [["f-name", v => v], ["f-email", v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)], ["f-org", v => v], ["f-country", v => v], ["f-desc", v => v.length >= 10]];
+  let first = null;
+  req.forEach(([id, test]) => { const el = $("#" + id), f = el.closest(".field"), good = !!test(el.value.trim()); f.classList.toggle("bad", !good); if (!good && !first) first = el; });
+  if (first) { first.focus(); return; }
+  const d = new Date(), pad = n => String(n).padStart(2, "0");
+  const ref = `CE-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+  const v = id => $("#" + id).value.trim();
+  let lines = Object.keys(cart).map(k => { const i = ITEMS[k]; return `  ${i.c}  ${i.n}  × ${cart[k]}  ${i.p == null ? "(custom quote)" : (i.f ? "from " : "") + fmt(i.p * cart[k])}`; });
+  if (!lines.length) lines = ["  None selected; please recommend a scope."];
+  const text = [
+    `CE-NPACD Service Request  ${ref}`, "",
+    `Name: ${v("f-name")}`, `Email: ${v("f-email")}`, `Organisation: ${v("f-org")} (${v("f-type")})`, `Country: ${v("f-country")}`, v("f-phone") ? `Phone: ${v("f-phone")}` : null, "",
+    "Selected services:", ...lines, "",
+    `Samples/compounds: ${v("f-samples") || "not specified"}`, `Timeline: ${v("f-time")}`,
+    `NDA required: ${$("#f-nda").checked ? "Yes" : "No"}`, `Scoping call: ${$("#f-call").checked ? "Yes" : "No"}`, "",
+    "Project description:", v("f-desc")
+  ].filter(x => x !== null).join("\n");
+  $("#ref").textContent = ref; $("#summary").textContent = text; $("#mail").textContent = EMAIL; $("#copy-msg").textContent = "";
+  $("#done").hidden = false; $("#done").scrollIntoView({ block: "start", behavior: "smooth" });
+  $("#copy-sum").onclick = () => copy(text, $("#copy-sum"), $("#copy-msg"));
+  $("#copy-mail").onclick = () => copy(EMAIL, $("#copy-mail"));
+});
+$("#qform").addEventListener("input", e => { const f = e.target.closest(".field"); if (f) f.classList.remove("bad"); });
+
+window.addEventListener("hashchange", setView);
+renderFilters(); renderCatalogue(); renderCartCount(); setView();
+</script>
+
+</body></html>
