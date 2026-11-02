@@ -402,15 +402,15 @@ footer a:hover{color:#7CC4E8}
           <div class="field full"><label class="check" for="f-call"><input type="checkbox" id="f-call" checked> I would like a free 30-minute scoping call</label></div>
         </div>
         <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-          <button class="primary" type="submit">Prepare my request</button>
+          <button class="primary" type="submit">Send request</button>
           <span class="small" style="margin:0">Structure files and sample data are exchanged securely after the NDA.</span>
         </div>
       </form>
       <div class="panel done" id="done" hidden style="margin-top:20px">
         <h2>Your request is ready to send</h2>
-        <p class="small" style="font-size:14px;margin-top:0">Reference <b class="mono" id="ref"></b>. Copy the request below and email it to our service team. We will reply with a formal quotation.</p>
+        <p class="small" style="font-size:14px;margin-top:0">Reference <b class="mono" id="ref"></b>. Your email app should open with this request filled in. Just press <b>Send</b>. If it did not open, click <b>Send by email</b>, or copy the request and email it to us.</p>
         <pre id="summary"></pre>
-        <div class="copyline"><button class="primary" type="button" id="copy-sum">Copy request</button><span class="small" id="copy-msg" style="margin:0" aria-live="polite"></span></div>
+        <div class="copyline"><a class="primary" id="send-mail" href="#" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">&#9993; Send by email</a><button class="ghost" type="button" id="copy-sum">Copy request</button><span class="small" id="copy-msg" style="margin:0" aria-live="polite"></span></div>
         <div class="copyline"><span class="small" style="margin:0">Email to</span><code id="mail"></code><button class="ghost" type="button" id="copy-mail">Copy address</button></div>
       </div>
     </div>
@@ -594,6 +594,9 @@ $("#qform").addEventListener("submit", e => {
   ].filter(x => x !== null).join("\n");
   $("#ref").textContent = ref; $("#summary").textContent = text; $("#mail").textContent = EMAIL; $("#copy-msg").textContent = "";
   $("#done").hidden = false; $("#done").scrollIntoView({ block: "start", behavior: "smooth" });
+  const mailto = "mailto:" + EMAIL + "?subject=" + encodeURIComponent("CE-NPACD Service Request " + ref + " - " + v("f-org")) + "&body=" + encodeURIComponent(text);
+  $("#send-mail").href = mailto;
+  window.location.href = mailto;
   $("#copy-sum").onclick = () => copy(text, $("#copy-sum"), $("#copy-msg"));
   $("#copy-mail").onclick = () => copy(EMAIL, $("#copy-mail"));
 });
