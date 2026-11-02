@@ -1,23 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>CE-NPACD Research Services</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Services | CE-NPACD</title>
+<meta name="description" content="Drug discovery and formulation services from CE-NPACD, Faculty of Pharmaceutical Sciences, Chulalongkorn University.">
+<link rel="icon" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
 <style>
 /* Layout: lab-instrument catalogue. Compact masthead, pipeline strip, sticky discipline rail + price ledger rows; quote view is form + live summary. */
 :root{
-  --bg:#F3F6F5; --surface:#FFFFFF; --ink:#0F1E1C; --muted:#566764; --line:#D6DFDC;
-  --accent:#0B6B5F; --accent-ink:#FFFFFF; --accent-soft:#DFEFEA; --ochre:#8E6110; --ochre-soft:#F5ECD9;
-  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
-  --radius:10px;
+  --navy:#0B1F3A; --navy-deep:#06131F; --navy-soft:#16305A;
+  --bg:#F5F8FB; --surface:#FFFFFF; --ink:#1C2430; --muted:#5B6472; --line:#E2E5EA;
+  --accent:#0369A1; --accent-deep:#075985; --accent-ink:#FFFFFF; --accent-soft:#DCEEF9;
+  --ochre:#0F7A55; --ochre-soft:#E3F4EA;
+  --bg-pastel:linear-gradient(135deg,#E6F2FB 0%,#E6F5EC 100%);
+  --display:"Noto Serif Thai", Georgia, serif;
+  --body:"IBM Plex Sans Thai", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --radius:4px; color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0B1312; --surface:#111C1A; --ink:#E4EDEB; --muted:#93A6A2; --line:#22322F;
-  --accent:#55C6B1; --accent-ink:#04201B; --accent-soft:#12322D; --ochre:#E2B65C; --ochre-soft:#2E2512; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0B1312; --surface:#111C1A; --ink:#E4EDEB; --muted:#93A6A2; --line:#22322F;
-  --accent:#55C6B1; --accent-ink:#04201B; --accent-soft:#12322D; --ochre:#E2B65C; --ochre-soft:#2E2512; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
@@ -157,8 +163,6 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
 .field input,.field select,.field textarea{padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);width:100%}
 .field textarea{min-height:120px;resize:vertical}
 .field .err{font-size:12px;color:#B3261E;display:none}
-:root[data-theme="dark"] .field .err{color:#F2B8B5}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .field .err{color:#F2B8B5}}
 .field.bad input,.field.bad textarea,.field.bad select{border-color:#B3261E}
 .field.bad .err{display:block}
 .check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
@@ -195,24 +199,132 @@ footer{border-top:1px solid var(--line)}
 footer .wrap{padding-block:28px;display:flex;flex-wrap:wrap;gap:16px 40px;font-size:13px;color:var(--muted)}
 footer b{color:var(--ink);font-weight:600}
 @media (prefers-reduced-motion:no-preference){.add,.rail button{transition:background .15s,color .15s}}
+
+/* ===== CE-NPACD site theme overrides ===== */
+body{margin:0;background:var(--bg);font-size:16px;line-height:1.65;zoom:1.25}
+.brand .bt{color:inherit}
+.rail{top:96px}
+h1,h2,h3{color:var(--navy);letter-spacing:-.01em}
+.row h3,.steps h3,.terms h3,.line .t{font-family:var(--body);color:var(--navy)}
+.wrap{max-width:1180px;padding-left:28px;padding-right:28px}
+@media (max-width:560px){.wrap{padding-left:16px;padding-right:16px}}
+.eyebrow{letter-spacing:.14em;font-weight:500}
+
+/* nav (matches main site) */
+.top{background:rgba(255,255,255,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .25s ease,border-color .25s ease}
+.top .wrap{min-height:76px;gap:24px}
+.top.scrolled{background:rgba(6,19,31,.94);border-bottom-color:rgba(255,255,255,.08)}
+.brand{align-items:center;gap:12px;color:var(--navy)}
+.brand img{height:46px;width:auto;display:block}
+.brand .bt{font-family:var(--display);font-size:15px;font-weight:600;line-height:1.2}
+.brand .bt small{display:block;font-family:var(--body);font-weight:400;font-size:11px;color:rgba(11,31,58,.6);letter-spacing:.02em}
+.nav{gap:22px}
+.nav a{color:var(--navy);font-size:14px;font-weight:500;padding:6px 0;border-radius:0;position:relative}
+.nav a:not(.qbtn)::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--accent);transition:width .2s ease}
+.nav a:not(.qbtn):hover::after,.nav a.on::after{width:100%}
+.nav a:hover{color:var(--accent)}
+.nav a.on{color:var(--accent);font-weight:600}
+.qbtn{padding:10px 18px!important;border-radius:2px!important;background:var(--accent)!important}
+.qbtn:hover{background:var(--accent-deep)!important;color:#fff!important}
+.qbtn .n{background:#fff;color:var(--accent)}
+.top.scrolled .brand,.top.scrolled .nav a:not(.qbtn){color:rgba(255,255,255,.85)}
+.top.scrolled .brand .bt small{color:rgba(255,255,255,.6)}
+.top.scrolled .nav a:not(.qbtn):hover{color:#fff}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:24px;height:2px;background:var(--navy);display:block}
+.top.scrolled .burger span{background:#fff}
+@media (max-width:980px){.nav a.hide-s{display:none}.burger{display:flex}.brand .bt small{display:none}}
+.mobile-panel{position:fixed;inset:0;background:var(--navy-deep);z-index:99;display:flex;flex-direction:column;padding:100px 32px 40px;transform:translateX(100%);transition:transform .28s ease}
+.mobile-panel.open{transform:translateX(0)}
+.mobile-panel a{color:#fff;font-size:22px;font-family:var(--display);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08);text-decoration:none}
+.qbtn{white-space:nowrap}
+@media (max-width:560px){.top .wrap{gap:10px}.qbtn{padding:8px 12px!important;font-size:13px}.brand img{height:38px}}
+.mobile-close{position:absolute;top:26px;right:28px;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
+
+/* hero band */
+.hero-band{background:var(--bg-pastel);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero-band::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:
+  radial-gradient(1px 1px at 15% 25%,rgba(3,105,161,.55) 50%,transparent 51%),
+  radial-gradient(1px 1px at 32% 65%,rgba(3,105,161,.4) 50%,transparent 51%),
+  radial-gradient(1px 1px at 78% 55%,rgba(3,105,161,.5) 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 88% 30%,rgba(15,122,85,.35) 50%,transparent 51%)}
+.hero{position:relative;padding-block:72px 48px}
+.hero h1{color:var(--navy);font-weight:700;max-width:22ch;line-height:1.15}
+.hero h1 .accent{color:var(--accent)}
+.hero p.lede{color:rgba(11,31,58,.7)}
+.facts b{color:var(--accent);font-size:15px}
+.serve #serve span{background:rgba(255,255,255,.7);border-color:rgba(3,105,161,.2);color:var(--navy)}
+.pipe{border-radius:var(--radius);box-shadow:0 10px 30px -18px rgba(11,31,58,.35)}
+.stage .k{color:var(--accent)}
+.stage:nth-child(1){border-top:3px solid #7CC4E8}.stage:nth-child(2){border-top:3px solid #3B9AD0}.stage:nth-child(3){border-top:3px solid var(--accent)}.stage:nth-child(4){border-top:3px solid #3DAA7D}.stage:nth-child(5){border-top:3px solid var(--ochre)}
+
+/* catalogue */
+.cat-layout{padding-block:40px 72px}
+.rail button{border-radius:2px;border-left:2px solid transparent}
+.rail button[aria-pressed="true"]{border-left-color:var(--accent);color:var(--accent)}
+.search input{border-radius:2px}
+.chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.discipline{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 26px 10px;box-shadow:0 6px 24px -20px rgba(11,31,58,.4)}
+@media (max-width:560px){.discipline{padding:18px 16px 6px}}
+.dhead{border-bottom:2px solid var(--accent)}
+.dhead h2{color:var(--navy)}
+.ghead .gn{color:var(--accent)}
+.add{border-radius:2px}
+.row.pkgrow{margin-left:-12px;padding-left:12px}
+.price .v{color:var(--navy)}
+
+/* bands & panels */
+.band{background:var(--bg-pastel)}
+.steps li{background:rgba(255,255,255,.7);padding:14px 16px 16px;border-radius:2px}
+.panel{border-radius:var(--radius);box-shadow:0 6px 24px -20px rgba(11,31,58,.4)}
+.primary{border-radius:2px}.primary:hover{background:var(--accent-deep)}
+.ghost{border-radius:2px}
+.qbar{background:var(--navy-deep);color:#fff}.qbar a{color:#fff}
+
+/* footer (matches main site) */
+footer{background:var(--navy-deep);color:rgba(255,255,255,.6);border-top:0;padding:56px 0 30px}
+footer .wrap{display:block;padding-block:0}
+.footer-grid{display:grid;grid-template-columns:1fr;gap:36px}
+@media (min-width:760px){.footer-grid{grid-template-columns:1.4fr 1fr 1fr}}
+footer h4{color:#fff;font-family:var(--body);font-size:14px;margin:0 0 14px;font-weight:600}
+footer a{display:block;font-size:13.5px;padding:5px 0;color:rgba(255,255,255,.6);text-decoration:none}
+footer a:hover{color:#7CC4E8}
+.footer-bottom{margin-top:40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12.5px;color:rgba(255,255,255,.45)}
 </style>
 
-<header class="top">
+<header class="top" id="topNav">
   <div class="wrap">
-    <a class="brand" href="#services"><b>CE-NPACD</b><span>Research Services · Chulalongkorn University</span></a>
+    <a class="brand" href="index.html"><img src="assets/logo.png" alt="CE-NPACD, Chulalongkorn University logo"><span class="bt">CE-NPACD<small>Chulalongkorn University</small></span></a>
     <nav class="nav" aria-label="Main">
-      <a href="/" class="hide-s">&larr; CE-NPACD Home</a>
+      <a href="index.html#about" class="hide-s">About</a>
+      <a href="index.html#research" class="hide-s">Research</a>
+      <a href="index.html#team" class="hide-s">Team</a>
+      <a href="index.html#ai-solutions" class="hide-s">AI Solutions</a>
       <a href="#services" id="nav-services" class="hide-s">Services</a>
       <a href="#process-anchor" class="hide-s" data-scroll="process">How it works</a>
       <a href="#quote" id="nav-quote" class="qbtn">Request a quote <span class="n" id="cart-n">0</span></a>
     </nav>
+    <button class="burger" id="burgerBtn" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
+<div class="mobile-panel" id="mobilePanel">
+  <button class="mobile-close" id="mobileClose" type="button" aria-label="Close menu">&times;</button>
+  <a href="index.html">Home</a>
+  <a href="index.html#about">About</a>
+  <a href="index.html#research">Research</a>
+  <a href="index.html#team">Team</a>
+  <a href="index.html#ai-solutions">AI Solutions</a>
+  <a href="#services">Services</a>
+  <a href="#quote">Request a quote</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
 <main id="view-services">
+  <div class="hero-band">
   <section class="wrap hero">
     <div class="eyebrow">Center of Excellence · Bangkok, Thailand</div>
-    <h1>Drug discovery and formulation services, from molecule to product</h1>
+    <h1>Drug discovery and formulation services, <span class="accent">from molecule to product</span></h1>
     <p class="lede">AI-driven computational chemistry, nanoformulation and wet-lab testing from the Center of Excellence in Natural Products for Ageing and Chronic Diseases, Faculty of Pharmaceutical Sciences, Chulalongkorn University. Choose individual services or a package, add them to your request and receive a formal quotation.</p>
     <div class="facts" id="facts"></div>
     <div class="serve"><span class="sl">Serving</span><div id="serve"></div></div>
@@ -224,6 +336,7 @@ footer b{color:var(--ink);font-weight:600}
       <div class="stage" role="listitem"><div class="k">Stage 5</div><h3>Validation</h3><p>Characterisation, analysis, bioassays, permeation</p></div>
     </div>
   </section>
+  </div>
 
   <section class="wrap cat-layout" aria-label="Service catalogue">
     <aside class="rail" id="rail" aria-label="Disciplines"></aside>
@@ -314,9 +427,30 @@ footer b{color:var(--ink);font-weight:600}
 
 <footer>
   <div class="wrap">
-    <div><b>CE-NPACD</b><br>Center of Excellence in Natural Products for Ageing and Chronic Diseases<br>Faculty of Pharmaceutical Sciences, Chulalongkorn University</div>
-    <div>254 Phayathai Road, Pathumwan<br>Bangkok 10330, Thailand</div>
-    <div>Service enquiries<br><span class="mono" style="user-select:all">pornchai.r@chula.ac.th</span></div>
+    <div class="footer-grid">
+      <div>
+        <h4>CE-NPACD</h4>
+        <p style="font-size:13.5px;color:rgba(255,255,255,.55);max-width:340px;margin:0">Center of Excellence in Natural Products for Ageing and Chronic Diseases, Faculty of Pharmaceutical Sciences, Chulalongkorn University.<br><br>254 Phayathai Road, Pathumwan, Bangkok 10330, Thailand</p>
+      </div>
+      <div>
+        <h4>Navigate</h4>
+        <a href="index.html#about">About</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#pipeline">Pipeline</a>
+        <a href="index.html#team">Our Team</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">Service catalogue</a>
+        <a href="#quote">Request a quote</a>
+        <a href="mailto:pornchai.r@chula.ac.th">pornchai.r@chula.ac.th</a>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 CE-NPACD, Faculty of Pharmaceutical Sciences, Chulalongkorn University.</span>
+      <span>Bangkok, Thailand</span>
+    </div>
   </div>
 </footer>
 
@@ -467,6 +601,15 @@ $("#qform").addEventListener("input", e => { const f = e.target.closest(".field"
 
 window.addEventListener("hashchange", setView);
 renderFilters(); renderCatalogue(); renderCartCount(); setView();
+
+(function(){
+  const nav = $("#topNav"), panel = $("#mobilePanel");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", onScroll); onScroll();
+  $("#burgerBtn").addEventListener("click", () => panel.classList.add("open"));
+  $("#mobileClose").addEventListener("click", () => panel.classList.remove("open"));
+  panel.querySelectorAll("a").forEach(a => a.addEventListener("click", () => panel.classList.remove("open")));
+})();
 </script>
 
 </body></html>
